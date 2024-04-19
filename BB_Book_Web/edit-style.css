@@ -1,0 +1,355 @@
+/* Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@100..700&display=swap');
+
+:root {
+    --blue: #78A3CD;
+    --dark-color: #B6CEE3;
+    --black: #000000;
+    --light-color:#666;
+    --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
+    --border:.2rem solid rgba(0,0,0,.1);
+    --outline:1rem solid rgba(0,0,0,.1);
+    --outline-hover:2rem solid var(--black);
+}
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0; 
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: all .2s linear;
+} 
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
+}
+
+body {
+    background: #eee;
+}
+
+/* Header Styles */
+.header {
+    position: fixed;
+    top:0; 
+    left: 0; 
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 9%;
+    background: #fff;
+    box-shadow: var(--box-shadow);
+}
+
+.header .logo{
+    font-size: 2.5rem;
+    font-weight: bolder;
+    color:var(--black);
+}
+
+.header .logo i{
+    color:var(--blue);
+}
+
+.header .icons div{
+    height: 4.5rem;
+    width: 4.5rem;
+    line-height: 4.5rem;
+    border-radius: .5rem;
+    background: #eee;
+    color:var(--black);
+    font-size: 2rem;
+    margin-right: .3rem;
+    text-align: center;
+}
+
+.header .icons div:hover{
+    background: var(--blue);
+    color: #fff;
+}
+
+#menu-btn {
+    display: none;
+}
+
+.header .search-form{
+    position: absolute;
+    top: 110%; 
+    right: -110%;
+    width: 50rem;
+    height: 5rem;
+    background: #fff;
+    border-radius: .5rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    box-shadow: var(--box-shadow);
+}
+
+.header .search-form.active{
+    right: 2rem;
+    transition: .4s linear;
+}
+
+.header .search-form input{
+    height: 100%;
+    width: 100%;
+    background: none;
+    text-transform: none;
+    font-size: 1.6rem;
+    color:var(--black);
+    padding:0 1.5rem;
+    outline: none; 
+    border:none;
+}
+
+.header .search-form label{
+    font-size: 2.2rem;
+    padding-right: 1.5rem;
+    color:var(--black);
+    cursor: pointer;
+}
+
+.header .search-form label:hover{
+    color:var(--blue);
+}
+
+.header-2{
+    background: var(--blue);
+}
+
+.header-2 .navbar{
+    text-align: center;
+}
+
+.header-2 .navbar a{
+    color: #fff;
+    display: inline-block;
+    padding: 1.2rem;
+    font-size: 1.7rem;
+}
+
+.header-2 .navbar a:hover{
+    background: var(--dark-color);
+}
+
+.header-2.active{
+    position: fixed;
+    top:0; 
+    left:0; 
+    right: 0;
+    z-index: 1000;
+}
+
+/* Layer and Content Styles */
+.layer {
+    width: 1000px;
+    height: 1000px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    margin: 30px auto; /* Center horizontally */
+    display: flex; /* Flex container */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center children vertically */
+    align-items: center; /* Center children horizontally */
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Center children horizontally */
+}
+
+
+.top {
+    width: 1000px;
+    height: 200px;
+    background-color: lightgray;
+    border: 0px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.top-image {
+    width: 1000px;
+    height: 200px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.left-box {
+    background-color: white;
+    width: 300px;
+    height: 400px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-box {
+    background-color: white;
+    width: 680px;
+    height: 700px;
+    margin: 10px;
+    margin-top: -450px;
+    margin-left:300px;
+}
+
+.vertical-menu {
+    width: 200px;
+}
+
+.vertical-menu a {
+    background-color: #EBF4FB;
+    color: black;
+    display: block;
+    padding: 20px;
+    text-align: left;
+    border-radius: 10px;
+}
+
+.vertical-menu a:hover {
+    background-color: #cbcbcbd5;
+}
+
+.vertical-menu a.active {
+    background-color: #7FABD0;
+    color: black;
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.profile p {
+    text-align: left;
+}
+
+button {
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#left-box {
+    margin-top: 170px;
+}
+
+.photo-preview{
+    width: 50% !important;
+    max-width: 50px !important;
+    height: 25% !important;
+    max-height: 25px!important;
+    border-radius: 10% !important;
+}
+
+.middle-profilepic {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    text-align: center;
+}
+
+.container-profilepic:hover .photo-preview {
+    opacity: 0.3;
+}
+
+.container-profilepic:hover .middle-profilepic {
+    opacity: 1;
+}
+
+.text-profilepic {
+    color: green;
+    font-size: 16px;
+}
+
+.card {
+    width:50px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: top;
+    color: #333;
+    position: relative;
+}
+
+.card img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    margin-left: 70px;
+}
+
+label {
+    display: block;
+    width: 75px;
+    background: #e3362c;
+    color: #fff;
+    padding: 12px;
+    margin: 10px auto;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 120px;
+}
+
+input{
+    display: none;
+}
+
+#user-name {
+    position: absolute; 
+    bottom: 150px; 
+    left: 300px; 
+    transform: translateX(-10%); 
+    color: rgb(10, 10, 10); 
+    padding: 5px 10px; 
+    border-radius: 5px; 
+    font-size: 25px; 
+}
+
+#e-mail {
+    position: absolute; 
+    bottom: 120px; 
+    left: 314px; 
+    transform: translateX(-10%); 
+    color: rgb(10, 10, 10); 
+    padding: 5px 10px; 
+    border-radius: 5px; 
+    font-size: 25px; 
+}
+
+#edituser{
+    margin-right: 50px;
+}
+
+.editinput{
+    display: inline;
+    margin-right: 600px;
+    height: 30px;
+    width: 250px;
+    border-radius: 5px;
+}
