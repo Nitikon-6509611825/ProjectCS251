@@ -13,31 +13,50 @@ inputFile.onchange = function(){
     profilePic.src = URL.createObjectURL(inputFile.files[0]);
 }
 
-//เก็บUser
-let userProfile = {
-    username: "LedZeppelin",
-    uid: "123456",
-    fname: "Robert",
-    lname: "Plant",
-    gender: "Male",
-    tel: "123-214-2510",
-    email: "ledzeppelin@gmail.com",
-    address: "123, West Browich, US"
-};
+    let username = document.getElementById("username").innerText = "Ledzeppelin";
+    let uid = document.getElementById("uid").innerText = "123456";
+    let fname = document.getElementById("fname").innerText = "Robert";
+    let lname = document.getElementById("lname").innerText = "Plant";
+    let gender = document.getElementById("gender").innerText = "Male";
+    let tel = document.getElementById("tel").innerText = "012-541-5741";
+    let email = document.getElementById("email").innerText ="ledzeppelin@gmail.com";
+    let address = document.getElementById("address").innerText =  "123, West Browich, US";
 
-window.onload = function(){
-    document.getElementById("username").innerText = userProfile.username;
-    document.getElementById("uid").innerText = userProfile.uid;
-    document.getElementById("fname").innerText = userProfile.fname;
-    document.getElementById("gender").innerText = userProfile.gender;
-    document.getElementById("tel").innerText = userProfile.tel;
-    document.getElementById("email").innerText = userProfile.email;
-    document.getElementById("address").innerText = userProfile.address;
+    document.getElementById("user-name").innerText = document.getElementById("username").innerText
+    document.getElementById("e-mail").innerText = document.getElementById("email").innerText;
 
-    document.getElementById("user-name").innerText = userProfile.username;
-    document.getElementById("e-mail").innerText = userProfile.email;
-}
+    window.onload = function() {
+        // ตรวจสอบว่ามีข้อมูลอัพเดตใน localStorage หรือไม่
+        if (localStorage.getItem('profileData')) {
+            // ถ้ามีข้อมูล ให้ดึงข้อมูลมาใช้
+            const updatedProfile = JSON.parse(localStorage.getItem('updatedProfile'));
+    
+            // แสดงข้อมูลใหม่ใน HTML
+            document.getElementById('username').innerText = updatedProfile.username;
+            document.getElementById('fname').innerText = updatedProfile.firstName;
+            document.getElementById('lname').innerText = updatedProfile.lastName;
+            document.getElementById('gender').innerText = updatedProfile.gender;
+            document.getElementById('tel').innerText = updatedProfile.tel;
+            document.getElementById('email').innerText = updatedProfile.email;
+            document.getElementById('address').innerText = updatedProfile.address;
+    
+            // ลบข้อมูลที่อัพเดตออกจาก localStorage
+            localStorage.removeItem('updatedProfile');
+        }
+    };
 
-   function editProfile(){
-    document.getElementById("edit-user-input").value = userProfile.username;
-}
+   
+
+    
+    
+   
+    
+      
+
+    
+    
+        
+        
+
+    
+   

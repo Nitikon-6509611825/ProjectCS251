@@ -14,53 +14,7 @@ document.querySelector('#login-btn').onclick = () =>{
 
 /*-------------- ตะกร้าสินค้า -----------*/
 
-const product = [
-    {
-        id: 0,
-        image: 'imgs/แมวส้ม.jpg',
-        title: 'แมวส้ม',
-        price: 120,
-    },
-    {
-        id: 1,
-        image: 'imgs/พิธา.jpg',
-        title: 'พิธา',
-        price: 100,
-    },
-    {
-        id: 2,
-        image: 'imgs/จิต.jpg',
-        title: 'จิตวิทยา',
-        price: 140,
-    },
-    {
-        id: 3,
-        image: 'imgs/ใจดี.jpg',
-        title: 'ใช้คลื่นพลังบวก',
-        price: 240,
-    },
-    
-];
 
-const categories = [...new Set(product.map((item)=>
-    {return item}))]
-    let i=0;
-    document.getElementById('root').innerHTML = product.map((item) => {
-        var { image, title, price } = item;
-        return(
-            `<div class='box'>
-                <div class='img-box'>
-                    <img class='images' src='${image}'></img>
-                </div>
-                <div class='bottom'>
-                    <p>${title}</p>
-                    <h2>${price}.00 ฿</h2>`+
-                    "<button onclick='addtocart("+(i++)+")'>Add to cart</button>"+
-                    `</div>
-            </div>`
-        )
-    }).join('');
-    
 
 /*-------------- เรียกสินค้า -----------*/
 
@@ -77,10 +31,8 @@ function delElement(a){
 }
 
 function displaycart(){
-    let j=0, total=0;
-
-   
-
+    let total=0;
+    cart = JSON.parse(localStorage.getItem('cart')) || []; // ดึงข้อมูลจาก localStorage
     if(cart.length==0){
         document.getElementById('cartItem').innerHTML = "Your cart is empty";
         document.getElementById("total").innerHTML = "$ "+0+".00";
@@ -101,3 +53,29 @@ function displaycart(){
     }
 }
 
+window.onload = function() {
+    displaycart();
+}
+
+document.getElementById('submitBtn').addEventListener('click', function() {
+    // รับข้อมูลจากฟอร์ม
+    const formData = new FormData(document.getElementById('checkoutForm'));
+
+    // ส่งข้อมูลไปยังเซิร์ฟเวอร์โดยใช้ Fetch API
+    fetch('submit.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (response.ok) {
+            // ทำอย่างไรก็ตามที่ต้องการหลังจากส่งข้อมูลสำเร็จ
+            console.log('Data submitted successfully!');
+        } else {
+            // กรณีเกิดข้อผิดพลาดในการส่งข้อมูล
+            console.error('Error submitting data:', response.statusText);
+        }
+    })
+    .catch(error => {
+        console.error('Error submitting data:', error);
+    });
+});

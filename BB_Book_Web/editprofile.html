@@ -6,40 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BB Book Website</title>
 
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="edit-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
 
-<header class="header">
+    <header class="header">
 
-    <a href="#" class="logo"><i class="fas fa-book"></i>     BB Buy Books</a>
-
-    <div class="icons">
-        <div class="fas fa-search" id="search-bth"></div>
-        <div class="fas fa-shopping-cart" id="cart-btn"></div>
-        <div class="fas fa-user" id="login-btn"></div>
+        <a href="#" class="logo"><i class="fas fa-book"></i>     BB Buy Books</a>
+    
+        <div class="icons">
+            <div class="fas fa-search" id="search-bth"></div>
+            <div class="fas fa-shopping-cart" id="cart-btn"></div>
+            <div class="fas fa-user" id="login-btn"></div>
+        </div>
+    
+        <form action="" class="search-form">
+            <input typy="search" id="search-bth" placeholder="search here...">
+            <label for="search-box" class="fas fa-search"></label>
+        </form>
+    
+    </header>
+    
+    <br><br><br><br><br>
+    
+    <div class="header-2">
+        <nav class="navbar">
+            <a href="home.html">home</a>
+            <a href="contect.html">contact us</a>
+            <a href="#">categories</a>
+            <a href="bestseller.html">best seller</a>
+            <a href="profile.html">about me</a>
+        </nav>
     </div>
-
-    <form action="" class="search-form">
-        <input typy="search" id="search-bth" placeholder="search here...">
-        <label for="search-box" class="fas fa-search"></label>
-    </form>
-
-</header>
-
-<br><br><br><br><br><br><br>
-
-<div class="header-2">
-    <nav class="navbar">
-        <a href="home.html">home</a>
-        <a href="contect.html">contact us</a>
-        <a href="#">categories</a>
-        <a href="bestseller.html">best seller</a>
-        <a href="profile.html">about me</a>
-    </nav>
-</div>
 
     <div class="layer">
         
@@ -76,53 +76,55 @@
                     <br><br><br>
                     <div class="column">
                         <div class="row">
-                            <p>ชื่อผู้ใช้: <span id="edit-username-input" name="edit-username-input"></span></p>
+                            <p>ชื่อผู้ใช้: <span id="edit-username" name="username"></span></p>
                             <br>
-                            <input id="edit-username-input" name="edit-username-input" type="text" class="editinput" value="LedZeppelin">
+                            <input id="username-input" name="username-input" type="text" class="editinput">
                         </div>
                     </div>
                     <br>
-                    <p>ชื่อ: <span id="edit-fname-input" name="edit-fname-input"></span> </p>
+                    <p>ชื่อ: <span id="fname" name="fname"></span> </p>
                     <br>
-                    <input id="edit-fname-input" name="edit-fname-input" type="text" class="editinput" value="Robert">
-                    <br>
-                    <br>
-                    <p>นามสกุล: <span id="edit-lname-input" name="edit-lname-input"></span></p>
-                    <br>
-                    <input id="edit-lname-input" name="edit-lname-input" type="text" class="editinput" value="Plant">
+                    <input id="fname-input" name="fname-input" type="text" class="editinput">
                     <br>
                     <br>
-                    <p>เพศ: <span id="edit-gender-input" name="edit-gender-input"></span></p>
+                    <p>นามสกุล: <span id="lname" name="lname"></span></p>
                     <br>
-                    <select class="editinput" name="edit-gender-input" id="edit-gender-input" style="width: 100px;">
-                        <option value="header"></option>
-                        <option value="header">Male</option> 
-                        <option value="header">Female</option>
-                        <option value="header">LGBTQ+</option></select>
+                    <input id="lname-input" name="lname-input" type="text" class="editinput">
                     <br>
                     <br>
-                    <p>หมายเลขโทรศัพท์: <span id="edit-tel-input" name="edit-tel-input"></span></p>
+                    <p>เพศ: <span id="gender" name="gender"></span></p>
                     <br>
-                    <input id="edit-tel-input" name="edit-tel-input" type="text" class="editinput" value="">
-                    <br>
-                    <br>
-                    <p>อีเมลล์: <span id="edit-email-input" name="edit-email-input"></span></p>
-                    <br>
-                    <input id="edit-email-input" name="edit-email-input" type="email" class="editinput" value="LedZeppelin@gmail.com">
-                    <br>
-                    <br>
-                    <p>ที่อยู่: <span id="edit-address-input" name="edit-address-input"></span></p>
-                    <br>
-                    <input id="edit-address-input" name="edit-address-input" type="text" class="editinput" value="US">
+                    <select class="editinput" name="gender-input" id="gender-input" style="width: 100px;">
+                        <option id="gender-input"></option>
+                        <option id="gender-input">Male</option> 
+                        <option id="gender-input">Female</option>
+                        <option id="gender-input">LGBTQ+</option></select>
                     <br>
                     <br>
-                    <button type="submit" onclick="window.location.href='profile.html'" onclick="editProfile()" style="margin-right: 600px;">EDIT</button>
+                    <p>หมายเลขโทรศัพท์: <span id="tel" name="tel"></span></p>
+                    <br>
+                    <input id="tel-input" name="tel-input" type="text" class="editinput">
+                    <br>
+                    <br>
+                    <p>อีเมลล์: <span id="email" name="email"></span></p>
+                    <br>
+                    <input id="email-input" name="email-input" type="email" class="editinput">
+                    <br>
+                    <br>
+                    <p>ที่อยู่: <span id="address" name="address"></span></p>
+                    <br>
+                    <input id="address-input" name="edit-address-input" type="text" class="editinput">
+                    <br>
+                    <br>
+                    <button type="button" id="update-button" onclick="updateProfile();" style="margin-right: 600px;">SAVE</button>
+                    <button type="button" id="edit-button" onclick= "window.location.href='profile.html'" style="margin-right: 600px;">BACK</button>
                 </div>
             </div>
         </div>
     </div>
    </div>
-   <script src="profile.js"></script>
-
+ 
 </body>
+<script src="editprofile.js"></script>
+<script src="profile.js"></script>
 </html>

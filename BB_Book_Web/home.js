@@ -14,6 +14,7 @@ document.querySelector('#login-btn').onclick = () =>{
 
 
 /*-------------- ตะกร้าสินค้า -----------*/
+/*---- home.js ----*/
 
 const product = [
     {
@@ -40,56 +41,27 @@ const product = [
         title: 'ใช้คลื่นพลังบวก',
         price: 240,
     },
-    
 ];
 
-const categories = [...new Set(product.map((item)=>
-    {return item}))]
-    let i=0;
-    document.getElementById('root').innerHTML = product.map((item) => {
-        var { image, title, price } = item;
-        return(
-            `<div class='box'>
-                <div class='img-box'>
-                    <img class='images' src='${image}'></img>
-                </div>
-                <div class='bottom'>
-                    <p>${title}</p>
-                    <h2>${price}.00 ฿</h2>`+
-                    "<button onclick='addtocart("+(i++)+")'>Add to cart</button>"+
-                    `</div>
-            </div>`
-        )
-    }).join('');
-    
-
-/*-------------- เรียกสินค้า -----------*/
-
-var cart=[];
-
 function addtocart(a){
-    cart.push({...categories[a]});
-    displaycart();
+    let cart = JSON.parse(localStorage.getItem('cart')) || []; // ดึงข้อมูลตะกร้าจาก localStorage
+    cart.push({...product[a]}); // เพิ่มสินค้าเข้าสู่ตะกร้า
+    localStorage.setItem('cart', JSON.stringify(cart)); // อัปเดตข้อมูลตะกร้าใน localStorage
+    window.location.href = 'cart.html'; // ส่งผู้ใช้ไปยังหน้า cart.html
 }
 
-function displaycart(){
-    let j=0;
-    if(cart.length==0){
-        document.getElementById('cartItem').innerHTML = "Your cart is empty";
-    }
-    else{
-        document.getElementById("cartItem").innerHTML = cart.map((item)=>
-    {
-        var {image, title, price} = item;
-        return(
-            `<div class='cart-item'>
-            <div class='row-img'>
-                <img class='rowing' src=${image}>
+document.getElementById('root').innerHTML = product.map((item, index) => {
+    const { image, title, price } = item;
+    return `
+        <div class='box'>
+            <div class='img-box'>
+                <img class='images' src='${image}'></img>
             </div>
-            <p style= 'font-size:12px;'>${title}</p>
-            <h2 style='font-size: 15px;'>$ ${price}.00 ฿</h2>`+
-            "<i class='fa-solid fa-trash' onclick='delElement("+ (j++) +")'></i></div>"
-        );
-    }).join('');
-    }
-}
+            <div class='bottom'>
+                <p>${title}</p>
+                <h2>${price}.00 ฿</h2>
+                <button onclick='addtocart(${index})'>Add to cart</button>
+            </div>
+        </div>
+    `;
+}).join('');

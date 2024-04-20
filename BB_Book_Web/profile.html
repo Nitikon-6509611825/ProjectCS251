@@ -73,13 +73,13 @@
                 <br><br>
                 <div class="profile">
                     <h2>My Profile</h2>
-                    <br><br><br>
-                    <button style="margin-left: 500px" onclick="window.location.href='editprofile.html'">EDIT PROFILE</button> <!-- เพิ่มปุ่ม Edit Profile -->
-                    <p>ชื่อผู้ใช้: <span id="username" name="username"></span></p>
+                    
+                    <button style="margin-left: 500px" onclick="window.location.href='editprofile.html'">EDIT</button> <!-- เพิ่มปุ่ม Edit Profile -->
+                    <p>ชื่อผู้ใช้: <span id="username" name="username" ></span></p>
                     <br>
                     <p>UID: <span id="uid" name="uid"></span></p>
                     <br>
-                    <p>ชื่อ: <span id="fname" name="fname"></span> <span id="lname" name="lname"></span></p>
+                    <p>ชื่อ: <span id="fname" name="fname"></span> <span id="lname" name="lname"  onchange="updateProfile()"></span></p>
                     <br>
                     <p>เพศ: <span id="gender" name="gender"></span></p>
                     <br>
@@ -95,8 +95,9 @@
    </div>
 
     
-   <script src="profile.js"></script>
 
 </body>
+<script src="profile.js"></script>
+<script src="editprofile.js"></script>
 </html>
 
