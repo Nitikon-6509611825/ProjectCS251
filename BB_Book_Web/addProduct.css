@@ -289,7 +289,7 @@ input[class="sub-input3"]{
 }
 
 textarea{
-    width: 100%;
+    width: 80%;
     height: 265px;
     border: 2px solid rgb(175, 175, 175);
     border-radius: 5px;

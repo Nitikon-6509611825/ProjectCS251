@@ -3,7 +3,7 @@ document.querySelector('#cart-btn').onclick = () =>{
 }
 
 document.querySelector('#login-btn').onclick = () =>{
-    window.location.href = 'Login.html'; // ลิงค์ไปยังหน้า cart.html
+    window.location.href = 'Login.html'; // ลิงค์ไปยังหน้า login.html
 }
 
 let profilePic = document.getElementById("profile-pic");
@@ -22,7 +22,7 @@ inputFile.onchange = function(){
     let email = document.getElementById("email").innerText ="ledzeppelin@gmail.com";
     let address = document.getElementById("address").innerText =  "123, West Browich, US";
 
-    document.getElementById("user-name").innerText = document.getElementById("username").innerText
+    document.getElementById("user-name").innerText = document.getElementById("username").innerText;
     document.getElementById("e-mail").innerText = document.getElementById("email").innerText;
 
     window.onload = function() {
