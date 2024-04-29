@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@100..700&display=swap');
+
+/* ------------------- top ----------------------*/
+:root {
+    --blue: #78A3CD;
+    --dark-color: #B6CEE3;
+    --black: #000000;
+    --light-color:#666;
+    --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
+    --border:.2rem solid rgba(0,0,0,.1);
+    --outline:1rem solid rgba(0,0,0,.1);
+    --outline-hover:2rem solid var(--black);
+}
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    outline: none; border:none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: all .2s linear;
+} 
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
+}
+
+body {
+    background: #eee;
+}
+
+.header {
+    position: fixed;
+    top:0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 9%;
+    background: #fff;
+    box-shadow: var(--box-shadow);
+}
+
+.header .logo{
+    font-size: 2.5rem;
+    font-weight: bolder;
+    color:var(--black);
+}
+
+.header .logo i{
+    color:var(--blue);
+}
+
+.header .icons div{
+    height: 4.5rem;
+    width: 4.5rem;
+    line-height: 4.5rem;
+    border-radius: .5rem;
+    background: #eee;
+    color:var(--black);
+    font-size: 2rem;
+    margin-right: .3rem;
+    text-align: center;
+}
+
+.header .icons div:hover{
+    background: var(--blue);
+    color: #fff;
+}
+
+#menu-btn {
+    display: none;
+}
+
+.header .search-form{
+    position: absolute;
+    top: 110%; right: -110%;
+    width: 50rem;
+    height: 5rem;
+    background: #fff;
+    border-radius: .5rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    box-shadow: var(--box-shadow);
+}
+
+.header .search-form.active{
+    right: 2rem;
+    transition: .4s linear;
+}
+
+.header .search-form input{
+    height: 100%;
+    width: 100%;
+    background: none;
+    text-transform: none;
+    font-size: 1.6rem;
+    color:var(--black);
+    padding:0 1.5rem;
+}
+
+.header .search-form label{
+    font-size: 2.2rem;
+    padding-right: 1.5rem;
+    color:var(--black);
+    cursor: pointer;
+}
+
+.header .search-form label:hover{
+    color:var(--blue);
+}
+
+.header-2{
+    background: var(--blue);
+}
+
+.header-2 .navbar{
+    text-align: center;
+}
+
+.header-2 .navbar a{
+    color: #fff;
+    display: inline-block;
+    padding: 1.2rem;
+    font-size: 1.7rem;
+}
+
+.header-2 .navbar a:hover{
+    background: var(--dark-color);
+}
+
+.header-2.active{
+    position: fixed;
+    top:0; left:0; right: 0;
+    z-index: 1000;
+}
+
+/* ---------------------------- */
+.body-2{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary-color);
+}
+
+.body-2 .container{
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    padding: 40px;
+    display: flex;
+    gap: 80px;
+    border-radius: 10px;
+    background-color: var(--dark-color);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.left{
+    width: 55%;
+}
+
+.heading {
+    font-size: 35px;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--black);
+}
+
+.text{
+    font-size: 14px;
+    color: var(--blue);
+    margin-top: 10px;
+}
+
+form {
+    margin-top: 20px;
+}
+
+.inputBox{
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.inputBox input,
+.inputBox textarea{
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    color: var(--white-color);
+    border: none;
+    outline: none;
+    background-color: white;
+}
+
+.inputBox textarea{
+    resize: none;
+    height: 150px;
+}
+
+.btn{
+    width: 100%;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    color: var(--white-color);
+    background-color: var(--blue);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.right{
+    width: 45%;
+    text-align: center; /* จัดข้อความหรือรูปภาพตรงกลาง */
+}
+
+.illustration{
+    width: 100%;
+    margin: 0 auto;
+}
+
+.illustration img{
+    width: 100%; /* กำหนดขนาดรูปภาพ */
+    display: block; /* ส่วนเพื่อไม่ให้รูปภาพถูกเกียวกับข้อความ */
+    margin: 0 auto; /* จัดตำแหน่งให้อยู่ตรงกลาง */
+}
+
+
+
