@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BB Book Website</title>
+
+        <link rel="stylesheet" href="addProduct.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    </head>
+    <body>
+        <header class="header">
+            <a href="#" class="logo"><i class="fas fa-book"></i>     BB Buy Books</a>
+        
+            <div class="icons">
+                <div class="fas fa-search" id="search-bth"></div>
+                <div class="fas fa-shopping-cart" id="cart-btn"></div>
+                <div class="fas fa-user" id="login-btn"></div>
+            </div>
+        
+            <form action="" class="search-form">
+                <input typy="search" id="search-bth" placeholder="search here...">
+                <label for="search-box" class="fas fa-search"></label>
+            </form>
+        </header>
+
+        <br><br><br><br><br><br><br>
+
+        <div class="header-2">
+            <nav class="navbar">
+                <a href="home.html">home</a>
+                <a href="contect.html">contact us</a>
+                <a href="#">categories</a>
+                <a href="bestseller.html">best seller</a>
+                <a href="profile.html">about me</a>
+            </nav>
+        </div>
+        
+        
+
+        <!--Body Page-->
+    <form id="myForm" name="myForm" onsubmit="return validateForm()">
+        <div class="container">
+            <div class="column1"> <!--Coloumn picture-->
+                <div class="image-container">
+                    <img src="imgs/addPic.png" id="bookPic">
+                    <div class="overlay">
+                        <label for="input-file"></label>
+                        <input type="file" accept="image/jpeg,  image/png, image/jpg" id="input-file">
+                    </div>
+                </div>
+            </div>
+            <div class="column"> <!--Column Book Detail-->
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <div class="row">
+                        <label class="red-label" for="bookName">เพิ่มรายการ</label>
+                    </div>
+                    <div class="row">
+                        <input type="text" name="bookName" id="bookName" placeholder="ชื่อหนังสือ">
+                        <span id="errorMessage" class="error-message"></span><br>
+                    </div>
+                    <div class="row">
+                        <input type="text" name="bookDetail" id="bookDetail" placeholder="คำโปรย" >
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label for="writer" class="small-label">ผู้เขียน: </label>
+                        <input type="text" name="writer" id="writer" class="sub-input1">
+                    </div>
+                    <br><br>
+                    <div class="row">
+                        <label for="publisher" class="small-label">สำนักพิมพ์: </label>
+                        <input type="text" name="publisher" id="publisher" class="sub-input1">
+                    </div>
+                    <br><br>
+                    <div class="row">
+                        <label for="bookGroup1" class="small-label">หมวดหมู่: </label>
+                        <input type="text" name="bookGroup" id="bookGroup1" class="sub-input1">
+                        <input type="text" name="bookGroup" id="bookGroup2" class="sub-input2">
+                        <input type="text" name="bookGroup" id="bookGroup3" class="sub-input3"><br>
+                        <br><span id="errorMessage1" class="error-message"></span><br>
+                    </div>
+                    <div class="row">
+                        <label for="price" class="small-label">ราคา: </label>
+                        <input type="text" name="price" id="price" class="sub-input1"><br>
+                        <br><span id="errorMessage2" class="error-message"></span><br>
+                    </div>
+            </div>
+            <div class="column">
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <div class="row">
+                    <label class="red-label" for="bookStory">เนื้อหาโดยสังเขป</label>
+                </div>
+                <div class="row">
+                    <textarea name="bookStory" id="bookStory" cols="30" rows="10"></textarea>
+                </div>
+                
+            </div>
+        </div>
+        <div class="row">
+            <button type="reset" onclick="resetAllData()">CANCLE</button>
+            <button type="submit" value="submit" onclick="showSuccessPopup()">SUBMIT</button>
+        </div>
+    </form>
+        
+
+        <script src="addProduct.js"></script>
+    </body>
+</html>

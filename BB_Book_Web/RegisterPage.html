@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--Latest compiled JavaScript-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!--add CSS file-->
+    <link href="registerstyle.css" rel="stylesheet"/>
+    
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@100..700&display=swap" rel="stylesheet">
+    
+    
+    <title>สมัครสมาชิก</title>
+
+</head>
+<body>
+    <div class="container">
+        <div class="head">
+        <h2><img src="./imgs/iconuser.png" width="75"></h2>
+           </div>
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="firstname">Firstname</label>
+                <input type="text" id="fname" name="fname" required title="กรุณากรอกข้อมูล">
+            </div>
+            <div class="form-group">
+                <label for="lastname">Lastname</label>
+                <input type="text" id="lname" name="lname" required title="กรุณากรอกข้อมูล">
+            </div>
+            <div class="form-group">
+                <label for="email">Email <img src="./imgs/mail.png" alt="Username Icon" class="input-icon"></label>
+                <input type="email" id="email" name="email" required title="กรุณากรอกข้อมูล">
+            </div>
+            <div class="form-group">
+                <label for="userid">UserID <img src="./imgs/user.png" alt="Username Icon" class="input-icon"></label>
+                <input type="text" id="uid" name="uid" required title="กรุณากรอกข้อมูล">
+            </div>
+            <div class="form-group">
+                <label for="password">Password <img src="./imgs/key.png" alt="Username Icon" class="input-icon"></label>
+                <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-zA-Z]).{8,}" required title="ต้องมีอักษร และ ตัวเลข0-9มากกว่า8ตัว">
+            </div>
+            <div class="form-group">
+                <button type="submit" onclick="window.location.href='Confirm.html'">SIGN UP</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

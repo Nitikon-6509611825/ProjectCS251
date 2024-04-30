@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BB Book Website</title>
+
+    <link rel="stylesheet" href="edit-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <header class="header">
+
+        <a href="#" class="logo"><i class="fas fa-book"></i>     BB Buy Books</a>
+    
+        <div class="icons">
+            <div class="fas fa-search" id="search-bth"></div>
+            <div class="fas fa-shopping-cart" id="cart-btn"></div>
+            <div class="fas fa-user" id="login-btn"></div>
+        </div>
+    
+        <form action="" class="search-form">
+            <input typy="search" id="search-bth" placeholder="search here...">
+            <label for="search-box" class="fas fa-search"></label>
+        </form>
+    
+    </header>
+    
+    <br><br><br><br><br>
+    
+    <div class="header-2">
+        <nav class="navbar">
+            <a href="home.html">home</a>
+            <a href="contect.html">contact us</a>
+            <a href="#">categories</a>
+            <a href="bestseller.html">best seller</a>
+            <a href="profile.html">about me</a>
+        </nav>
+    </div>
+
+    <div class="layer">
+        
+        <div class="top">
+            <img src="./imgs/04.jpg" alt="" class="top-image">
+        </div>
+
+        <div class="container">
+        <div class="column">    
+            <div class="card">
+                <img src="profile.png" id="profile-pic">
+                <span id="user-name"></span>
+                <span id="e-mail"></span>
+                <label for="input-file">แก้ไข</label>
+                <input type="file" accept="image/jpeg, image/png" id="input-file" style="margin-left: 70px;">
+            </div>
+
+            <div class="left-box">
+                <br><br><br>
+                
+                <div class="vertical-menu">
+                    <a href="#" class="active">การซื้อของฉัน</a>
+                    <a href="#">•ที่ต้องชำระ</a>
+                    <a href="#">•กำลังจัดส่ง</a>
+                    <a href="#">•ยืนยันการรับสินค้า</a>
+                    <a href="#">•ให้คะแนน</a>
+                </div>
+            </div>
+
+            <div class="right-box">
+                <br><br>
+                <div class="profile">
+                    <h2>Edit Profile</h2>
+                    <br><br><br>
+                    <div class="column">
+                        <div class="row">
+                            <p>ชื่อผู้ใช้: <span id="edit-username" name="username"></span></p>
+                            <br>
+                            <input id="username-input" name="username-input" type="text" class="editinput">
+                        </div>
+                    </div>
+                    <br>
+                    <p>ชื่อ: <span id="fname" name="fname"></span> </p>
+                    <br>
+                    <input id="fname-input" name="fname-input" type="text" class="editinput">
+                    <br>
+                    <br>
+                    <p>นามสกุล: <span id="lname" name="lname"></span></p>
+                    <br>
+                    <input id="lname-input" name="lname-input" type="text" class="editinput">
+                    <br>
+                    <br>
+                    <p>เพศ: <span id="gender" name="gender"></span></p>
+                    <br>
+                    <select class="editinput" name="gender-input" id="gender-input" style="width: 100px;">
+                        <option id="gender-input"></option>
+                        <option id="gender-input">Male</option> 
+                        <option id="gender-input">Female</option>
+                        <option id="gender-input">LGBTQ+</option></select>
+                    <br>
+                    <br>
+                    <p>หมายเลขโทรศัพท์: <span id="tel" name="tel"></span></p>
+                    <br>
+                    <input id="tel-input" name="tel-input" type="text" class="editinput">
+                    <br>
+                    <br>
+                    <p>อีเมลล์: <span id="email" name="email"></span></p>
+                    <br>
+                    <input id="email-input" name="email-input" type="email" class="editinput">
+                    <br>
+                    <br>
+                    <p>ที่อยู่: <span id="address" name="address"></span></p>
+                    <br>
+                    <input id="address-input" name="edit-address-input" type="text" class="editinput">
+                    <br>
+                    <br>
+                    <button type="button" id="update-button" onclick="updateProfile();" style="margin-right: 600px;">SAVE</button>
+                    <button type="button" id="edit-button" onclick= "window.location.href='profile.html'" style="margin-right: 600px;">BACK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+ 
+</body>
+<script src="editprofile.js"></script>
+<script src="profile.js"></script>
+</html>
