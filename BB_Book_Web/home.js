@@ -22,25 +22,64 @@ const product = [
         image: 'imgs/แมวส้ม.jpg',
         title: 'แมวส้ม',
         price: 120,
+        category: 'Novels'
     },
     {
         id: 1,
         image: 'imgs/พิธา.jpg',
         title: 'พิธา',
         price: 100,
+        category: 'Science'
     },
     {
         id: 2,
         image: 'imgs/จิต.jpg',
         title: 'จิตวิทยา',
         price: 140,
+        category: 'Philosophy'
     },
     {
         id: 3,
         image: 'imgs/ใจดี.jpg',
         title: 'ใช้คลื่นพลังบวก',
         price: 240,
+        category: 'History'
     },
+    {
+        id: 4,
+        image: 'imgs/ใจดี.jpg',
+        title: 'ใช้คลื่นพลังบวก',
+        price: 240,
+        category: 'Personal_Development'
+    },
+    {
+        id: 5,
+        image: 'imgs/ใจดี.jpg',
+        title: 'ใช้คลื่นพลังบวก',
+        price: 240,
+        category: 'Politics'
+    },
+    {
+        id: 6,
+        image: 'imgs/ใจดี.jpg',
+        title: 'ใช้คลื่นพลังบวก',
+        price: 240,
+        category: 'Literature'
+    },
+    {
+        id: 7,
+        image: 'imgs/ใจดี.jpg',
+        title: 'ใช้คลื่นพลังบวก',
+        price: 240,
+        category: 'Magazines'
+    },
+    {
+        id: 8,
+        image: 'imgs/ใจดี.jpg',
+        title: 'ใช้คลื่นพลังบวก',
+        price: 240,
+        category: 'more'
+    }
 ];
 
 function addtocart(a){

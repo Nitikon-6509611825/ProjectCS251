@@ -240,7 +240,7 @@ h2{
     color: red;
 }
 
-button{
+input[type="submit"]{
     width: 100%;
     position: relative;
     border: none;
@@ -251,7 +251,7 @@ button{
     color: white;
 }
 
-button:hover{
+input[type="submit"]:hover{
     background-color: #333;
 }
 

@@ -17,65 +17,44 @@ document.querySelector('#login-btn').onclick = () =>{
 
 
 /*-------------- เรียกสินค้า -----------*/
-
-var cart=[];
-
-function addtocart(a){
-    cart.push({...categories[a]});
-    displaycart();
-}
-
-function delElement(a){
-    cart.splice(a, 1);
-    displaycart();
-}
-
-function displaycart(){
-    let total=0;
-    cart = JSON.parse(localStorage.getItem('cart')) || []; // ดึงข้อมูลจาก localStorage
-    if(cart.length==0){
-        document.getElementById('cartItem').innerHTML = "Your cart is empty";
-        document.getElementById("total").innerHTML = "$ "+0+".00";
-    }
-    else{
-        document.getElementById("cartItem").innerHTML = cart.map((item)=>
-    {
-        var {title, price} = item;
-        total=total+price;
-        document.getElementById("total").innerHTML = "$ "+total+".00"
-        return(
-            `<div class='cart-item'>
-            <p style= 'font-size:12px;'>${title}</p>
-            <h2 style='font-size: 15px;'>$ ${price}.00 ฿</h2>`+
-            "<i class='fa-solid fa-trash' onclick='delElement("+ (j++) +")'></i></div>"
-        );
-    }).join('');
-    }
-}
+/*---- cart.js ----*/
 
 window.onload = function() {
     displaycart();
 }
 
-document.getElementById('submitBtn').addEventListener('click', function() {
-    // รับข้อมูลจากฟอร์ม
-    const formData = new FormData(document.getElementById('checkoutForm'));
+function displaycart(){
+    let total = 0;
+    let cart = JSON.parse(localStorage.getItem('cart')) || []; // ดึงข้อมูลตะกร้าจาก localStorage
 
-    // ส่งข้อมูลไปยังเซิร์ฟเวอร์โดยใช้ Fetch API
-    fetch('submit.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        if (response.ok) {
-            // ทำอย่างไรก็ตามที่ต้องการหลังจากส่งข้อมูลสำเร็จ
-            console.log('Data submitted successfully!');
-        } else {
-            // กรณีเกิดข้อผิดพลาดในการส่งข้อมูล
-            console.error('Error submitting data:', response.statusText);
-        }
-    })
-    .catch(error => {
-        console.error('Error submitting data:', error);
-    });
-});
+    if(cart.length === 0){
+        document.getElementById('cartItem').innerHTML = "Your cart is empty";
+        document.getElementById("total").innerHTML = total.toFixed(2)+ " ฿"; // แก้ไขการแสดงค่า total
+    }
+    else{
+        document.getElementById("cartItem").innerHTML = cart.map((item, index) => {
+            const { title, price } = item;
+            total += price;
+            return `
+                <div class='cart-item'>
+                    <p style='font-size: 12px;'>${title}</p>
+                    <h2 style='font-size: 15px;'>${price}.00 ฿</h2>
+                    <i class='fa-solid fa-trash' onclick='delElement(${index})'></i>
+                </div>
+            `;
+        }).join('');
+        document.getElementById("total").innerHTML = total.toFixed(2)+ " ฿"; // แก้ไขการแสดงค่า total
+    }
+}
+
+function delElement(index){
+    let cart = JSON.parse(localStorage.getItem('cart')) || []; // ดึงข้อมูลตะกร้าจาก localStorage
+    cart.splice(index, 1); // ลบสินค้าออกจากตะกร้า
+    localStorage.setItem('cart', JSON.stringify(cart)); // อัปเดตข้อมูลตะกร้าใน localStorage
+    displaycart(); // แสดงรายการสินค้าใหม่หลังจากลบ
+}
+
+
+
+
+
