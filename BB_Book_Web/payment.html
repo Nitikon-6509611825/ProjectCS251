@@ -31,11 +31,13 @@
             <nav class="navbar">
                 <a href="home.html">home</a>
                 <a href="contect.html">contact us</a>
-                <a href="#">categories</a>
+                <a href="category.html">categories</a>
                 <a href="bestseller.html">best seller</a>
                 <a href="profile.html">about me</a>
             </nav>
         </div>
+
+        <!-- **************************************** -->
 
         <div class="layer">
         
@@ -59,9 +61,7 @@
                     <div class="vertical-menu">
                         <a href="#" class="active">การซื้อของฉัน</a>
                         <a href="payment.html">•ที่ต้องชำระ</a>
-                        <a href="#">•กำลังจัดส่ง</a>
-                        <a href="#">•ยืนยันการรับสินค้า</a>
-                        <a href="#">•ให้คะแนน</a>
+                        <a href="status.html">•กำลังจัดส่ง</a>
                     </div>
                 </div>
     
@@ -88,11 +88,17 @@
                         </select>
                     </div><br>
                     <div class="row-hide" id="hidden-div">
-                        <p class="p-head">สลิปการโอนเงิน</p>
-                    </div>
+                        <label for="slip-image" class="p-head">สลิปการโอนเงิน</label>
+                        <input type="file" id="slip-image" accept="image/jpeg, image/png">
+                    </div>                    
+                </div>
+                <div class="submit">
+                    <button id="cancelPaymentButton">ยกเลิก</button>
+                    <button id="confirmPaymentButton">ยืนยันการชำระเงิน</button>
                 </div>
             </div>
             </div>
+            
        </div>
 
 

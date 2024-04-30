@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BB Book Website</title>
+
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@100..700&display=swap');
+    
+    :root {
+    --blue: #78A3CD;
+    --dark-color: #B6CEE3;
+    --black: #000000;
+    --light-color:#666;
+    --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
+    --border:.2rem solid rgba(0,0,0,.1);
+    --outline:1rem solid rgba(0,0,0,.1);
+    --outline-hover:2rem solid var(--black);
+}
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: all .2s linear;
+} 
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
+}
+
+body {
+    background: #eee;
+}
+
+.header {
+    position: fixed;
+    top:0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 9%;
+    background: #fff;
+    box-shadow: var(--box-shadow);
+}
+
+.header .logo{
+    font-size: 2.5rem;
+    font-weight: bolder;
+    color:var(--black);
+}
+
+.header .logo i{
+    color:var(--blue);
+}
+
+.header .icons div{
+    height: 4.5rem;
+    width: 4.5rem;
+    line-height: 4.5rem;
+    border-radius: .5rem;
+    background: #eee;
+    color:var(--black);
+    font-size: 2rem;
+    margin-right: .3rem;
+    text-align: center;
+}
+
+.header .icons div:hover{
+    background: var(--blue);
+    color: #fff;
+}
+
+#menu-btn {
+    display: none;
+}
+
+.header .search-form{
+    position: absolute;
+    top: 110%; right: -110%;
+    width: 50rem;
+    height: 5rem;
+    background: #fff;
+    border-radius: .5rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    box-shadow: var(--box-shadow);
+}
+
+.header .search-form.active{
+    right: 2rem;
+    transition: .4s linear;
+}
+
+.header .search-form input{
+    height: 100%;
+    width: 100%;
+    background: none;
+    text-transform: none;
+    font-size: 1.6rem;
+    color:var(--black);
+    padding:0 1.5rem;
+    outline: none; border:none;
+}
+
+.header .search-form label{
+    font-size: 2.2rem;
+    padding-right: 1.5rem;
+    color:var(--black);
+    cursor: pointer;
+}
+
+.header .search-form label:hover{
+    color:var(--blue);
+}
+
+.header-2{
+    background: var(--blue);
+}
+
+.header-2 .navbar{
+    text-align: center;
+}
+
+.header-2 .navbar a{
+    color: #fff;
+    display: inline-block;
+    padding: 1.2rem;
+    font-size: 1.7rem;
+}
+
+.header-2 .navbar a:hover{
+    background: var(--dark-color);
+}
+
+.header-2.active{
+    position: fixed;
+    top:0; left:0; right: 0;
+    z-index: 1000;
+}
+
+.header-3 {
+    text-align: center;
+}
+
+.header-3 button {
+    padding: 10px; /* ลดขนาด padding */
+    font-size: 30px; /* ลดขนาด font */
+    width: auto; /* เปลี่ยนเป็น auto เพื่อให้ปรับขนาดเสมอ */
+    margin-top: 30px; /* ลดระยะห่าง */
+    background-color: #871B00;
+    color: #fff;
+    border: none;
+}
+
+
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <a href="#" class="logo"><i class="fas fa-book"></i>     BB Buy Books</a>
+
+    <div class="icons">
+        <div class="fas fa-search" id="search-bth"></div>
+        <div class="fas fa-shopping-cart" id="cart-btn"></div>
+        <div class="fas fa-user" id="login-btn"></div>
+    </div>
+
+    <form action="" class="search-form">
+        <input typy="search" id="search-bth" placeholder="search here...">
+        <label for="search-box" class="fas fa-search"></label>
+    </form>
+
+</header>
+
+<br><br><br><br><br><br><br>
+
+<div class="header-2">
+    <nav class="navbar">
+        <a href="home.html">home</a>
+        <a href="contect.html">contact us</a>
+        <a href="category.html">categories</a>
+        <a href="bestseller.html">best seller</a>
+        <a href="profile.html">about me</a>
+    </nav>
+</div>
+
+<!-- หน้าสินค้า -->
+
+<br><br><br>
+
+<div class="header-3">
+    <button>การพัฒนาตนเอง</button>
+</div>
+
+<br><br>
+
+<div class="body-2">
+
+<div class="container">
+    <div id="root"></div>
+    
+</div>
+
+</div>
+
+
+<!-- ************************* -->
+
+<script>
+
+let searchForm = document.querySelector('.search-form');
+
+document.querySelector('#search-bth').onclick = () =>{
+    searchForm.classList.toggle('active');
+}
+
+document.querySelector('#cart-btn').onclick = () =>{
+    window.location.href = 'cart.html'; // ลิงค์ไปยังหน้า cart.html
+}
+
+document.querySelector('#login-btn').onclick = () =>{
+    window.location.href = 'Login.html'; // ลิงค์ไปยังหน้า cart.html
+}
+
+
+/*-------------- ตะกร้าสินค้า -----------*/
+/*---- home.js ----*/
+
+const product = [
+    {
+        id: 0,
+        image: 'imgs/แมวส้ม.jpg',
+        title: 'แมวส้ม',
+        price: 120,
+        category: 'การพัฒนาตนเอง'
+    },
+];
+
+function addtocart(a){
+    let cart = JSON.parse(localStorage.getItem('cart')) || []; // ดึงข้อมูลตะกร้าจาก localStorage
+    cart.push({...product[a]}); // เพิ่มสินค้าเข้าสู่ตะกร้า
+    localStorage.setItem('cart', JSON.stringify(cart)); // อัปเดตข้อมูลตะกร้าใน localStorage
+    window.location.href = 'cart.html'; // ส่งผู้ใช้ไปยังหน้า cart.html
+}
+
+document.getElementById('root').innerHTML = product.map((item, index) => {
+    const { image, title, price } = item;
+    return `
+        <div class='box'>
+            <div class='img-box'>
+                <img class='images' src='${image}'></img>
+            </div>
+            <div class='bottom'>
+                <p>${title}</p>
+                <h2>${price}.00 ฿</h2>
+                <button onclick='addtocart(${index})'>Add to cart</button>
+            </div>
+        </div>
+    `;
+}).join('');
+
+</script>
+
+
+</body>
+</html>

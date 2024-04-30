@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BB Book Website</title>
+
+    <link rel="stylesheet" href="status.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<header class="header">
+
+    <a href="#" class="logo"><i class="fas fa-book"></i>     BB Buy Books</a>
+
+    <div class="icons">
+        <div class="fas fa-search" id="search-bth"></div>
+        <div class="fas fa-shopping-cart" id="cart-btn"></div>
+        <div class="fas fa-user" id="login-btn"></div>
+    </div>
+
+    <form action="" class="search-form">
+        <input typy="search" id="search-bth" placeholder="search here...">
+        <label for="search-box" class="fas fa-search"></label>
+    </form>
+
+</header>
+
+<br><br><br><br><br><br><br>
+
+<div class="header-2">
+    <nav class="navbar">
+        <a href="home.html">home</a>
+        <a href="contect.html">contact us</a>
+        <a href="#">categories</a>
+        <a href="bestseller.html">best seller</a>
+        <a href="profile.html">about me</a>
+    </nav>
+</div>
+
+    <div class="layer">
+        
+        <div class="top">
+            <img src="./imgs/04.jpg" alt="" class="top-image">
+        </div>
+
+        <div class="container">
+        <div class="column">    
+            <div class="card">
+                <img src="profile.png" id="profile-pic">
+                <span id="user-name"></span>
+                <span id="e-mail"></span>
+                <label for="input-file">แก้ไข</label>
+                <input type="file" accept="image/jpeg, image/png" id="input-file" style="margin-left: 70px;">
+            </div>
+
+            <div class="left-box">
+                <br><br><br>
+                
+                <div class="vertical-menu">
+                    <a href="#" class="active">การซื้อของฉัน</a>
+                    <a href="#">•ที่ต้องชำระ</a>
+                    <a href="#">•กำลังจัดส่ง</a>
+                    <a href="#">•ยืนยันการรับสินค้า</a>
+                    <a href="#">•ให้คะแนน</a>
+                </div>
+            </div>
+
+            <div class="right-box">
+                <br><br>
+                <div class="rh-box">
+                    <img src="imgs/caricon.jpg" id="car-icon">
+                    <th colspan="4">กำลังจัดส่ง</th>
+                </div>
+                <div class="table">
+                    <table border="1">
+                    <tr> 
+                        <th>หมายเลขคำสั่งซื้อ</th>
+                        <th>ชื่อ-นามสกุล</th>
+                        <th>วันที่จัดส่ง</th>
+                        <th>สถานะ</th>
+                    </tr>
+                    <tr>
+                        <td><span id="NoID" name="NoID" ></span></td>
+                        <td><span id="name" name="name" ></span></td>
+                        <td><span id="date" name="date" ></span></td>
+                        <td><span id="status" name="status" ></span></td>
+                    </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+
+    
+
+</body>
+<script src="status.js"></script>
+<script src="profile.js"></script>
+</html>
+

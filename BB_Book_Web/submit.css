@@ -10,21 +10,16 @@
     --outline:1rem solid rgba(0,0,0,.1);
     --outline-hover:2rem solid var(--black);
 }
-#root{
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 20px;
-}
 
 *{
     font-family: 'Poppins', sans-serif;
+    font-size: 15px;
     margin: 0; padding: 0;
     box-sizing: border-box;
     text-decoration: none;
     text-transform: capitalize;
     transition: all .2s linear;
-}
+} 
 
 html{
     font-size: 62.5%;
@@ -35,12 +30,8 @@ html{
 
 body {
     background: #eee;
-    place-items: center;
-    justify-content: center;
-    margin: 0;
 }
 
-/*header*/
 .header {
     position: fixed;
     top:0; left: 0; right: 0;
@@ -126,7 +117,6 @@ body {
 
 .header-2{
     background: var(--blue);
-    width: 100%;
 }
 
 .header-2 .navbar{
@@ -150,32 +140,7 @@ body {
     z-index: 1000;
 }
 
-/*Username*/
-
-#user-name {
-    position: absolute; /* ตั้งตำแหน่งใหม่ */
-    bottom: 150px; /* ตำแหน่งด้านล่างของภาพ */
-    left: 300px; /* ชิดไปที่ขอบซ้ายของภาพ */
-    transform: translateX(-10%); /* จัดตำแหน่งตามขอบภาพ */
-    color: rgb(10, 10, 10); /* สีตัวอักษร */
-    padding: 5px 10px; /* การเตรียมพื้นที่รอบๆของข้อความ */
-    border-radius: 5px; /* ขอบโค้ง */
-    font-size: 25px; /* ขนาดตัวอักษร */
-    
-}
-
-#e-mail {
-    position: absolute; /* ตั้งตำแหน่งใหม่ */
-    bottom: 120px; /* ตำแหน่งด้านล่างของภาพ */
-    left: 314px; /* ชิดไปที่ขอบซ้ายของภาพ */
-    transform: translateX(-10%); /* จัดตำแหน่งตามขอบภาพ */
-    color: rgb(10, 10, 10); /* สีตัวอักษร */
-    padding: 5px 10px; /* การเตรียมพื้นที่รอบๆของข้อความ */
-    border-radius: 5px; /* ขอบโค้ง */
-    font-size: 25px; /* ขนาดตัวอักษร */ 
-}
-
-/*Body Page*/
+/*-------------------------------------*/
 
 .layer {
     width: 1000px;
@@ -229,56 +194,27 @@ body {
 }
 
 .right-box {
-    font-size: 15px;
     background-color: w;
     width: 600px;
     height: 600x;
     margin: 10px;
-    margin-top: -470px;
-    margin-left:300px;
+    margin-top: -440px;
+    margin-left:350px;
+    
+    
+    
 }
-
-.right-box h1{
-    text-align: center;
-}
-
-.row{
-    position: relative;
-    width: 100%;
-    padding-top: 5px; /* ห่างจากขอบบน */
-    padding-bottom: 5px;
-    background-color: rgba(238, 238, 238, 0.76);
-    border: 1px solid rgba(0, 0, 0, 0);
-}
-
-div[id="hidden-div"]{
-    position: relative;
-    width: 100%;
-    padding-top: 5px; /* ห่างจากขอบบน */
-    padding-bottom: 5px;
-    background-color: rgba(238, 238, 238, 0.76);
-    border: 1px solid rgba(0, 0, 0, 0);
-}
-
-.row-hide{
-    display: none;
-}
-
-.p-head{
-    color: rgb(175, 46, 89);
-}
-
-textarea{
-    width: 100%;
-    height: 100px;
-    border: 2px solid rgb(175, 175, 175);
-    border-radius: 5px;
-    font-size: 18px;
+.pic {
+    width: 160px;
+    height: 210px;
+  
+    margin-left: 770px;
+    margin-top: 70px;
+    
 }
 
 .vertical-menu {
     width: 200px;
-    font-size: 15px;
 }
 
 .vertical-menu a {
@@ -306,12 +242,18 @@ textarea{
     font-size: 20px;
 }
 
+.profile p {
+    text-align: left;
+    
+    
+}
+
 button {
     padding: 15px;
     width: 100;
     margin-top: 20px;
-    background-color: #007bff;
-    color: #fff;
+    background-color: #e9b508;
+    color: #0e0000;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -328,29 +270,28 @@ button:hover {
     height: 25% !important;
     max-height: 25px!important;
     border-radius: 10% !important;
-}
+  }
 
-.middle-profilepic {
+  .middle-profilepic {
     transition: .5s ease;
     opacity: 0;
     position: absolute;
     text-align: center;
-}
+  }
   
-.container-profilepic:hover .photo-preview {
+  .container-profilepic:hover .photo-preview {
     opacity: 0.3;
-}
+  }
   
-.container-profilepic:hover .middle-profilepic {
+  .container-profilepic:hover .middle-profilepic {
     opacity: 1;
-}
+  }
   
-.text-profilepic {
+  .text-profilepic {
     color: green;
     font-size: 16px;
-}
-
-.card {
+  }
+  .card {
     width:50px;
     background: #fff;
     padding: 20px;
@@ -358,20 +299,17 @@ button:hover {
     text-align: top;
     color: #333;
     position: relative;
-}
+   
+  }
 
-.card img {
+  .card img {
     width: 180px;
     height: 180px;
     border-radius: 50%;
     margin-left: 70px;
-}
-
-.card input{
-    display: none;
-}
+  }
   
-label[for="input-file"] {
+  label {
     display: block;
     width: 75px;
     background: #e3362c;
@@ -381,28 +319,89 @@ label[for="input-file"] {
     border-radius: 5px;
     cursor: pointer;
     margin-left: 120px;
-    font-size: 15px;
+  }
+
+  input{
+    display: none;
+  }
+
+  #user-name {
+    position: absolute; /* ตั้งตำแหน่งใหม่ */
+    bottom: 150px; /* ตำแหน่งด้านล่างของภาพ */
+    left: 300px; /* ชิดไปที่ขอบซ้ายของภาพ */
+    transform: translateX(-10%); /* จัดตำแหน่งตามขอบภาพ */
+    color: rgb(10, 10, 10); /* สีตัวอักษร */
+    padding: 5px 10px; /* การเตรียมพื้นที่รอบๆของข้อความ */
+    border-radius: 5px; /* ขอบโค้ง */
+    font-size: 25px; /* ขนาดตัวอักษร */
+    
 }
 
-.col-check{
-    display: flex;
-    align-items: center;
-    height: 100%;
-    width: 2%;
-    border: 0px;
-    background-color: #ffffff00;
+    #e-mail {
+    position: absolute; /* ตั้งตำแหน่งใหม่ */
+    bottom: 120px; /* ตำแหน่งด้านล่างของภาพ */
+    left: 314px; /* ชิดไปที่ขอบซ้ายของภาพ */
+    transform: translateX(-10%); /* จัดตำแหน่งตามขอบภาพ */
+    color: rgb(10, 10, 10); /* สีตัวอักษร */
+    padding: 5px 10px; /* การเตรียมพื้นที่รอบๆของข้อความ */
+    border-radius: 5px; /* ขอบโค้ง */
+    font-size: 25px; /* ขนาดตัวอักษร */ 
+    }
+
+    #edituser{
+        margin-right: 50p;
+    }
+    .editinput{
+        display: inline;
+        margin-right: 600px;
+        height: 20px;
+        border-radius: 5px;
+    }
+   .new{
+    
+    display: block;
+    width: 180px;
+    padding: 12px;
+    margin: 10px auto;
+ margin-right:597px;
+    cursor: pointer;
+margin-top: 20px;
+
+  
+ 
+}
+.profile h2 {
+    margin-left: -15px;
+ 
 }
 
-select{
-    position: relative;
+.profile h2 {
+    border-bottom: 1px solid #000; /* เส้นขีดด้านล่างสีดำ */
+    padding-bottom: 10px; /* ระยะห่างด้านล่างของเส้นขีด */
+ 
+    
+    width: auto;
+    border-top: 1px solid #000; /* เส้นขีดด้านล่างสีดำ */
+    padding-top: 10px; 
+ 
 }
 
-.submit{
-    display: flex;
-    justify-content: right;
-    margin-top: 20px;
+
+
+
+.profile h2 {
+    position: relative; /* กำหนดให้เป็นตำแหน่งแบบเป็นหลัก */
+    border-bottom: 1px solid #000; /* เส้นขีดด้านล่างสีดำ */
+    padding-bottom: 10px; /* ระยะห่างด้านล่างของเส้นขีด */
+    width: 107%;
 }
 
-.submit button {
-    margin: 0 10px; /* เพิ่มระยะห่างระหว่างปุ่ม */
+.profile h2::before {
+    content: ""; /* เพิ่มเนื้อหาเป็นสายแบบเสมือน */
+    position: absolute; /* กำหนดให้เป็นตำแหน่งแบบเป็นเอกภาพ */
+    top: 0; /* ย้ายไปที่ด้านบน */
+    left: -4px; /* ย้ายไปทางซ้าย */
+    height: 1050%; /* ความสูงของเส้น */
+    border-left: 1px solid #000; /* เส้นขีดด้านซ้ายสีดำ */
+    
 }
