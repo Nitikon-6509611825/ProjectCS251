@@ -1,37 +1,72 @@
-let bookPic = document.getElementById("bookPic");
-            let inputFile = document.getElementById("input-file");
+var jwt = localStorage.getItem("jwt");
+if (jwt !== "admin") {
+    window.location.href = './home.html';
+}
 
-            inputFile.onchange = function(){
-                bookPic.src = URL.createObjectURL(inputFile.files[0]);
-            }
+$(document).ready(function () {
+    $('#input-file').change(function () {
+        // เมื่อมีการเลือกไฟล์
+        var input = this;
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#bookPic').attr('src', e.target.result); // ตั้งค่า src ของรูปภาพ
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    });
 
-            function showSuccessPopup() {
-                if (validateForm()==true){
-                    alert("เพิ่มรายการเสร็จสมบูรณ์แล้ว!");
-                    location.reload();
+    $('form').submit(function (e) {
+        e.preventDefault();
+        // เมื่อฟอร์มถูกส่ง
+
+        var bookName = $('#bookName').val();
+        var bookGroup1 = $('#bookGroup1').val();
+        var bookGroup2 = $('#bookGroup2').val();
+        var bookGroup3 = $('#bookGroup3').val();
+        var price = $('#price').val();
+        var picture = $('#input-file').val();
+
+        if (bookName === "" || (bookGroup1 === "" && bookGroup2 === "" && bookGroup3 === "") || price === "") {
+            Swal.fire({
+                text: "กรุณากรอกข้อมูลให้ครบ",
+                icon: "error",
+                confirmButtonText: "OK"
+            });
+            return false;
+        }
+
+        const tNo = String(bookGroup1) + String(bookGroup2) + String(bookGroup3);
+        // รวบรวมข้อมูลจากฟอร์ม
+        var formData = {
+            bookName: bookName,
+            tNo: tNo,
+            price: price,
+            bPicture: picture
+        };
+
+        // ส่งข้อมูลไปยัง API
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost:3000/api/addProduct',
+            data: formData,
+            success: function (data) {
+                console.log(data);
+                if (data.success === true) {
+                    Swal.fire({
+                        text: data.message,
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
                 }
+            },
+            error: function (xhr, status, error) {
+                Swal.fire({
+                    text: xhr.responseJSON.message,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
             }
-
-            function resetAllData() {
-                document.getElementById("myForm").reset();
-            }
-
-            function validateForm() {
-                var bookName = document.getElementById("bookName").value;
-                var bookGroup1 = document.getElementById("bookGroup1").value;
-                var price = document.getElementById("price").value;
-
-                if(bookName.trim() == "" || bookGroup1.trim() == "" || price.trim() == "") {
-                    if (bookName.trim() == "") {
-                        document.getElementById("errorMessage").innerText = "*กรุณากรอกชื่อหนังสือ";
-                    }else document.getElementById("errorMessage").innerText = "";
-                    if (bookGroup1.trim() == "") {
-                        document.getElementById("errorMessage1").innerText = "*กรุณากรอกหมวดหมู่";
-                    } else document.getElementById("errorMessage1").innerText = "";
-                    if (price.trim() == "") {
-                        document.getElementById("errorMessage2").innerText = "*กรุณากรอกราคา";
-                    } else document.getElementById("errorMessage2").innerText = "";
-                    return false;
-                } else return true;
-            }
-        
+        });
+    });
+});

@@ -16,7 +16,10 @@
     
     
     <title>สมัครสมาชิก</title>
-
+    <script>var jwt = localStorage.getItem("jwt");
+        if (jwt != null && jwt != "" && jwt != undefined && jwt != "undefined") {
+          window.location.href = './home.html';
+        }</script>
 </head>
 <body>
     <div class="container">

@@ -8,6 +8,9 @@
 
         <link rel="stylesheet" href="addProduct.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="addProduct.js"></script>
     </head>
     <body>
         <header class="header">
@@ -31,7 +34,7 @@
             <nav class="navbar">
                 <a href="home.html">home</a>
                 <a href="contect.html">contact us</a>
-                <a href="#">categories</a>
+                <a href="category.html">categories</a>
                 <a href="bestseller.html">best seller</a>
                 <a href="profile.html">about me</a>
             </nav>
@@ -40,7 +43,7 @@
         
 
         <!--Body Page-->
-    <form id="myForm" name="myForm" onsubmit="return validateForm()">
+    <form id="myForm" name="myForm" enctype="multipart/form-data" action="#" method="post">
         <div class="container">
             <div class="column1"> <!--Coloumn picture-->
                 <div class="image-container">
@@ -63,26 +66,24 @@
                     <br>
                     <div class="row">
                         <label for="bookGroup1" class="small-label">หมวดหมู่: </label> 
-                        <input type="text" name="bookGroup" id="bookGroup1" class="sub-input1"> 
+                        <input type="number" name="bookGroup" id="bookGroup1" class="sub-input1"> 
                         <!-- เก็บข้อมูลจาก id ไว้ใน database table book atribute "picture" / ***หากมีหลาย bookGroup ให้เก็บข้อมูล Group ละ 1 row ใน database-->
-                        <input type="text" name="bookGroup" id="bookGroup2" class="sub-input2">
-                        <input type="text" name="bookGroup" id="bookGroup3" class="sub-input3"><br>
+                        <input type="number" name="bookGroup" id="bookGroup2" class="sub-input2">
+                        <input type="number" name="bookGroup" id="bookGroup3" class="sub-input3"><br>
                         <br><span id="errorMessage1" class="error-message"></span><br>
                     </div>
                     <div class="row">
                         <label for="price" class="small-label">ราคา: </label> <!-- เก็บข้อมูลจาก id ไว้ใน database table book atribute "price"-->
-                        <input type="text" name="price" id="price" class="sub-input1"><br>
+                        <input type="number" name="price" id="price" class="sub-input1"><br>
                         <br><span id="errorMessage2" class="error-message"></span><br>
                     </div>
             </div>
         </div>
         <div class="row">
-            <button type="reset" onclick="resetAllData()">CANCLE</button>
-            <button type="submit" value="submit" onclick="showSuccessPopup()">SUBMIT</button>
+            <button type="reset">CANCLE</button>
+            <button type="submit" value="submit">SUBMIT</button>
         </div>
     </form>
-        
 
-        <script src="addProduct.js"></script>
     </body>
 </html>
