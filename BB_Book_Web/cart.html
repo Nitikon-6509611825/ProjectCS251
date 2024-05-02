@@ -54,16 +54,21 @@
             <i class="fa fa-shopping-cart"></i>
             <p>My Cart</p>
         </div>
-        <div id="cartItem">Your cart is empty</div>
+        <div id="cartItem">Your cart is empty</div> <!--ดึงข้อมูล จาก table "book" atribute "bName" และ "price" มาแสดง เมื่อทำการกด button "Add to Cart" ที่  home.html page-->
         <div class="food">
             <h3>Total</h3>
-            <h2 id="total">0.00 ฿</h2>
+            <h2 id="total">0.00 ฿</h2> <!-- คำนวน ราคารวมจาก "price" ทั้งหมดใน cart-->
         </div>
 
           <form id="checkoutForm" action="submit.php" method="POST">
             <!-- ตำแหน่งสำหรับกรอกรายละเอียดการจัดส่งหรือการชำระเงิน -->
             <!-- เพิ่ม input fields ตามที่ต้องการ -->
-            <button type="button" id="submitBtn">Submit</button>
+            <button type="button" id="submitBtn">Submit</button> 
+            <!--เมื่อกด submit success ให้เก็บข้อมูลใน table "transaction"
+                uID = userID ของผู้ใช้
+                bID = bID ที่ดึงมาแสดงบน page หากมีมากกว่า 1 ให้บันทึกเป็น bID ละ 1 row
+                date = บันทึกเวลา ณ ขณะที่ submit
+            -->
         </form>
           
 

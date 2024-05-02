@@ -55,7 +55,8 @@
                     name="name"
                     class="name"
                     placeholder="Enter your name"
-                >
+                    id="cName"
+                > <!--เก็บข้อมูลจาก id ไว้ใน database table "chat" attribute "cName"-->
             </div>
             <div class="inputBox">
                 <input
@@ -63,7 +64,8 @@
                     name="email"
                     class="email"
                     placeholder="Enter your email address"
-                >
+                    id="cEmail"
+                > <!--เก็บข้อมูลจาก id ไว้ใน database table "chat" attribute "cEmail"-->
             </div>
             <div class="inputBox">
                 <textarea 
@@ -71,7 +73,8 @@
                     name="message" 
                     class="message" 
                     placeholder="Enter your message ..." 
-                ></textarea>
+                    id="history"
+                ></textarea> <!--เก็บข้อมูลจาก id ไว้ใน database table "chat" attribute "history"-->
             </div>
             <button class="btn">Submit</button>
         </form>
