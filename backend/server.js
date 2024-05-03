@@ -1,14 +1,14 @@
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const mysql = require('mysql2');
-const multer = require('multer');
-const upload = multer({ dest: 'uploads/' }); // Define the upload directory
+const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const mysql = require("mysql2");
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" }); // Define the upload directory
 
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  database: 'cs251_project'
+  host: "localhost",
+  user: "root",
+  database: "cs251_project",
 });
 
 var app = express();
@@ -20,36 +20,51 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.post('/api/register', (req, res) => {
+app.post("/api/register", (req, res) => {
   const { fname, lname, email, uid, password } = req.body;
   // สร้าง userId ที่ unique
-  const userId = String(Date.now().toString(32) + Math.random().toString(16)).replace(/\./g, '');
+  const userId = String(
+    Date.now().toString(32) + Math.random().toString(16)
+  ).replace(/\./g, "");
   // ตรวจสอบว่า uid ไม่ซ้ำกัน
   connection.query(
-    'SELECT * FROM `user` WHERE `userName` = ?', [uid],
+    "SELECT * FROM `user` WHERE `userName` = ?",
+    [uid],
     function (err, results, fields) {
       if (err) {
         // เกิดข้อผิดพลาดในการเชื่อมต่อฐานข้อมูล
-        console.error('Error:', err);
-        res.status(500).json({ success: false, message: 'เกิดข้อผิดพลาดในการสมัครสมาชิก' });
+        console.error("Error:", err);
+        res.status(500).json({
+          success: false,
+          message: "เกิดข้อผิดพลาดในการสมัครสมาชิก",
+        });
       } else {
         // ถ้ามีผู้ใช้งาน uid ในฐานข้อมูลแล้ว
         if (results.length > 0) {
-          res.status(400).json({ success: false, message: 'UserID นี้ถูกใช้ไปแล้ว' });
+          res.status(400).json({
+            success: false,
+            message: "UserID นี้ถูกใช้ไปแล้ว",
+          });
         } else {
           // ถ้ายังไม่มีผู้ใช้งาน uid นี้ในฐานข้อมูล
           // ทำการเพิ่มข้อมูลผู้ใช้งานใหม่ลงในฐานข้อมูล
           connection.query(
-            'INSERT INTO `user` (`UserID`, `fName`, `lName`, `email`, `userName`, `password`) VALUES (?, ?, ?, ?, ?, ?)',
+            "INSERT INTO `user` (`UserID`, `fName`, `lName`, `email`, `userName`, `password`) VALUES (?, ?, ?, ?, ?, ?)",
             [userId, fname, lname, email, uid, password],
             function (err, results, fields) {
               if (err) {
                 // เกิดข้อผิดพลาดในการเพิ่มข้อมูลผู้ใช้งาน
-                console.error('Error:', err);
-                res.status(500).json({ success: false, message: 'เกิดข้อผิดพลาดในการสมัครสมาชิก' });
+                console.error("Error:", err);
+                res.status(500).json({
+                  success: false,
+                  message: "เกิดข้อผิดพลาดในการสมัครสมาชิก",
+                });
               } else {
                 // สมัครสมาชิกสำเร็จ
-                res.status(201).json({ success: true, message: 'สมัครสมาชิกสำเร็จ' });
+                res.status(201).json({
+                  success: true,
+                  message: "สมัครสมาชิกสำเร็จ",
+                });
               }
             }
           );
@@ -59,26 +74,43 @@ app.post('/api/register', (req, res) => {
   );
 });
 
-
-app.post('/api/login', (req, res) => {
+app.post("/api/login", (req, res) => {
   const { uid, password } = req.body;
   // ตรวจสอบว่าเป็น Admin หรือไม่
-  if (uid === 'admin' && password === '00000000') {
-    res.status(200).json({ success: true, message: 'Admin เข้าสู่ระบบสำเร็จ', accessToken: 'admin' });
+  if (uid === "admin" && password === "00000000") {
+    res.status(200).json({
+      success: true,
+      message: "Admin เข้าสู่ระบบสำเร็จ",
+      accessToken: "admin",
+      userId: uid,
+    });
   } else {
     // ตรวจสอบว่ามีผู้ใช้งานที่ตรงกับข้อมูลที่รับมาหรือไม่
     connection.query(
-      'SELECT * FROM `user` WHERE `userName` = ? AND `password` = ?', [uid, password],
+      "SELECT * FROM `user` WHERE `userName` = ? AND `password` = ?",
+      [uid, password],
       function (err, results, fields) {
         if (err) {
           // เกิดข้อผิดพลาดในการเชื่อมต่อฐานข้อมูล
-          console.error('Error:', err);
-          res.status(500).json({ success: false, message: 'เกิดข้อผิดพลาดในการสมัครสมาชิก' });
+          console.error("Error:", err);
+          res.status(500).json({
+            success: false,
+            message: "เกิดข้อผิดพลาดในการสมัครสมาชิก",
+          });
         } else {
           if (results.length > 0) {
-            res.status(200).json({ success: true, message: 'เข้าสู่ระบบสำเร็จ', accessToken: 'user' });
+            res.status(200).json({
+              success: true,
+              message: "เข้าสู่ระบบสำเร็จ",
+              accessToken: "user",
+              userId: uid,
+            });
           } else {
-            res.status(401).json({ success: false, message: 'ข้อมูลการเข้าสู่ระบบไม่ถูกต้อง', accessToken: "" });
+            res.status(401).json({
+              success: false,
+              message: "ข้อมูลการเข้าสู่ระบบไม่ถูกต้อง",
+              accessToken: "",
+            });
           }
         }
       }
@@ -87,138 +119,305 @@ app.post('/api/login', (req, res) => {
 });
 
 // Endpoint to handle adding a new product
-app.post('/api/addProduct', upload.single('bPicture'), (req, res) => {
-  const bId = String(Date.now().toString(32) + Math.random().toString(16)).replace(/\./g, '');
-  // Retrieve data from the request body
-  const { bookName, tNo, price } = req.body;
-  let bPicture = null;
-  if (req.file) {
-    bPicture = req.file.path;
-  }
+app.post(
+  "/api/addProduct",
+  upload.single("bPicture"),
+  (req, res) => {
+    const bId = String(
+      Date.now().toString(32) + Math.random().toString(16)
+    ).replace(/\./g, "");
+    // Retrieve data from the request body
+    const { bookName, tNo, price } = req.body;
+    let bPicture = null;
+    if (req.file) {
+      bPicture = req.file.path;
+    }
 
-  // Prepare SQL query to insert the new product into the database
-  const sql = 'INSERT INTO book (bID, tNo, bName, price, bPicture) VALUES (?, ?, ?, ?, ?)';
-  const values = [bId, tNo, bookName, price, bPicture];
+    // Prepare SQL query to insert the new product into the database
+    const sql =
+      "INSERT INTO book (bID, tNo, bName, price, bPicture) VALUES (?, ?, ?, ?, ?)";
+    const values = [bId, tNo, bookName, price, bPicture];
+
+    // Execute the SQL query
+    connection.query(
+      sql,
+      values,
+      (err, results, fields) => {
+        if (err) {
+          // เกิดข้อผิดพลาดในการเชื่อมต่อฐานข้อมูล
+          console.error("Error:", err);
+          res.status(500).json({
+            success: false,
+            message: "เกิดข้อผิดพลาดในการเพิ่มสินค้า",
+          });
+        } else {
+          res.status(200).json({
+            success: true,
+            message: "Product added successfully",
+          });
+        }
+      }
+    );
+  }
+);
+
+app.get("/api/getProduct", (req, res) => {
+  // Query to get products from database
+  connection.query("SELECT * FROM book", (err, results) => {
+    if (err) {
+      console.error("Error:", err);
+      res.status(500).json({
+        success: false,
+        message: "Failed to get products from database",
+      });
+    } else {
+      res.status(200).json({
+        success: true,
+        message: "Products retrieved successfully",
+        books: results,
+      });
+    }
+  });
+});
+
+app.get("/api/getNovel", (req, res) => {
+  connection.query(
+    'SELECT * FROM book WHERE tNo LIKE "%1%" ',
+    (err, results) => {
+      if (err) {
+        console.error("Error:", err);
+        res.status(500).json({
+          success: false,
+          message: "Failed to get products from database",
+        });
+      } else {
+        res.status(200).json({
+          success: true,
+          message: "Products retrieved successfully",
+          books: results,
+        });
+      }
+    }
+  );
+});
+
+app.get("/api/getFinance", (req, res) => {
+  connection.query(
+    'SELECT * FROM book WHERE tNo LIKE "%2%" ',
+    (err, results) => {
+      if (err) {
+        console.error("Error:", err);
+        res.status(500).json({
+          success: false,
+          message: "Failed to get products from database",
+        });
+      } else {
+        res.status(200).json({
+          success: true,
+          message: "Products retrieved successfully",
+          books: results,
+        });
+      }
+    }
+  );
+});
+
+app.get("/api/getDevelopment", (req, res) => {
+  connection.query(
+    'SELECT * FROM book WHERE tNo LIKE "%3%" ',
+    (err, results) => {
+      if (err) {
+        console.error("Error:", err);
+        res.status(500).json({
+          success: false,
+          message: "Failed to get products from database",
+        });
+      } else {
+        res.status(200).json({
+          success: true,
+          message: "Products retrieved successfully",
+          books: results,
+        });
+      }
+    }
+  );
+});
+
+app.get("/api/getMagazine", (req, res) => {
+  connection.query(
+    'SELECT * FROM book WHERE tNo LIKE "%4%" ',
+    (err, results) => {
+      if (err) {
+        console.error("Error:", err);
+        res.status(500).json({
+          success: false,
+          message: "Failed to get products from database",
+        });
+      } else {
+        res.status(200).json({
+          success: true,
+          message: "Products retrieved successfully",
+          books: results,
+        });
+      }
+    }
+  );
+});
+
+app.get("/api/getHistory", (req, res) => {
+  connection.query(
+    'SELECT * FROM book WHERE tNo LIKE "%5%" ',
+    (err, results) => {
+      if (err) {
+        console.error("Error:", err);
+        res.status(500).json({
+          success: false,
+          message: "Failed to get products from database",
+        });
+      } else {
+        res.status(200).json({
+          success: true,
+          message: "Products retrieved successfully",
+          books: results,
+        });
+      }
+    }
+  );
+});
+
+app.get("/api/getPhilosophy", (req, res) => {
+  connection.query(
+    'SELECT * FROM book WHERE tNo LIKE "%6%" ',
+    (err, results) => {
+      if (err) {
+        console.error("Error:", err);
+        res.status(500).json({
+          success: false,
+          message: "Failed to get products from database",
+        });
+      } else {
+        res.status(200).json({
+          success: true,
+          message: "Products retrieved successfully",
+          books: results,
+        });
+      }
+    }
+  );
+});
+
+app.get("/api/getScience", (req, res) => {
+  connection.query(
+    'SELECT * FROM book WHERE tNo LIKE "%7%" ',
+    (err, results) => {
+      if (err) {
+        console.error("Error:", err);
+        res.status(500).json({
+          success: false,
+          message: "Failed to get products from database",
+        });
+      } else {
+        res.status(200).json({
+          success: true,
+          message: "Products retrieved successfully",
+          books: results,
+        });
+      }
+    }
+  );
+});
+
+app.get("/api/getOther", (req, res) => {
+  connection.query(
+    'SELECT * FROM book WHERE tNo LIKE "%8%" ',
+    (err, results) => {
+      if (err) {
+        console.error("Error:", err);
+        res.status(500).json({
+          success: false,
+          message: "Failed to get products from database",
+        });
+      } else {
+        res.status(200).json({
+          success: true,
+          message: "Products retrieved successfully",
+          books: results,
+        });
+      }
+    }
+  );
+});
+
+app.post("/api/addToCart", (req, res) => {
+  const { userId, bName, price } = req.body;
+  const sql =
+    "INSERT INTO buket (UserID, bName, price) VALUES (?, ?, ?)";
+  const values = [userId, bName, price];
 
   // Execute the SQL query
   connection.query(sql, values, (err, results, fields) => {
     if (err) {
       // เกิดข้อผิดพลาดในการเชื่อมต่อฐานข้อมูล
-      console.error('Error:', err);
-      res.status(500).json({ success: false, message: 'เกิดข้อผิดพลาดในการเพิ่มสินค้า' });
+      console.error("Error:", err);
+      res.status(500).json({
+        success: false,
+        message: "เกิดข้อผิดพลาดในการเพิ่มสินค้า",
+      });
     } else {
-      res.status(200).json({ success: true, message: 'Product added successfully' });
+      res.status(200).json({
+        success: true,
+        message: "Product added successfully",
+      });
     }
   });
 });
 
-app.get('/api/getProduct', (req, res) => {
-  // Query to get products from database
-  connection.query('SELECT * FROM book', (err, results) => {
-    if (err) {
-      console.error('Error:', err);
-      res.status(500).json({ success: false, message: 'Failed to get products from database' });
-    } else {
-      res.status(200).json({ success: true, message: 'Products retrieved successfully', books: results });
+app.post("/api/getCart", (req, res) => {
+  const { userId } = req.body;
+  connection.query(
+    "SELECT * FROM `buket` WHERE `UserID` = ?",
+    [userId],
+    function (err, results, fields) {
+      if (err) {
+        console.error("Error:", err);
+        res.status(500).json({
+          success: false,
+          message: "Failed to get products from database",
+        });
+      } else {
+        res.status(200).json({
+          success: true,
+          message: "Products retrieved successfully",
+          bucket: results,
+        });
+      }
     }
-  });
+  );
 });
 
-app.get('/api/getNovel', (req, res) => {
-  connection.query('SELECT * FROM book WHERE tNo LIKE "%1%" ', (err, results) => {
-    if (err) {
-      console.error('Error:', err);
-      res.status(500).json({ success: false, message: 'Failed to get products from database' });
-    } else {
-      res.status(200).json({ success: true, message: 'Products retrieved successfully', books: results });
+app.delete("/api/deleteCartItem", (req, res) => {
+  const { userId } = req.body;
+  connection.query(
+    "SELECT * FROM `buket` WHERE `UserID` = ?",
+    [userId],
+    function (err, results, fields) {
+      if (err) {
+        console.error("Error:", err);
+        res.status(500).json({
+          success: false,
+          message: "Failed to get products from database",
+        });
+      } else {
+        res.status(200).json({
+          success: true,
+          message: "Products retrieved successfully",
+          bucket: results,
+        });
+      }
     }
-  });
-});
-
-app.get('/api/getFinance', (req, res) => {
-  // Query to get products from database
-  connection.query('SELECT * FROM book WHERE tNo LIKE "%2%" ', (err, results) => {
-    if (err) {
-      console.error('Error:', err);
-      res.status(500).json({ success: false, message: 'Failed to get products from database' });
-    } else {
-      res.status(200).json({ success: true, message: 'Products retrieved successfully', books: results });
-    }
-  });
-});
-
-app.get('/api/getDevelopment', (req, res) => {
-  // Query to get products from database
-  connection.query('SELECT * FROM book WHERE tNo LIKE "%3%" ', (err, results) => {
-    if (err) {
-      console.error('Error:', err);
-      res.status(500).json({ success: false, message: 'Failed to get products from database' });
-    } else {
-      res.status(200).json({ success: true, message: 'Products retrieved successfully', books: results });
-    }
-  });
-});
-
-app.get('/api/getMagazine', (req, res) => {
-  // Query to get products from database
-  connection.query('SELECT * FROM book WHERE tNo LIKE "%4%" ', (err, results) => {
-    if (err) {
-      console.error('Error:', err);
-      res.status(500).json({ success: false, message: 'Failed to get products from database' });
-    } else {
-      res.status(200).json({ success: true, message: 'Products retrieved successfully', books: results });
-    }
-  });
-});
-
-app.get('/api/getHistory', (req, res) => {
-  // Query to get products from database
-  connection.query('SELECT * FROM book WHERE tNo LIKE "%5%" ', (err, results) => {
-    if (err) {
-      console.error('Error:', err);
-      res.status(500).json({ success: false, message: 'Failed to get products from database' });
-    } else {
-      res.status(200).json({ success: true, message: 'Products retrieved successfully', books: results });
-    }
-  });
-});
-
-app.get('/api/getPhilosophy', (req, res) => {
-  // Query to get products from database
-  connection.query('SELECT * FROM book WHERE tNo LIKE "%6%" ', (err, results) => {
-    if (err) {
-      console.error('Error:', err);
-      res.status(500).json({ success: false, message: 'Failed to get products from database' });
-    } else {
-      res.status(200).json({ success: true, message: 'Products retrieved successfully', books: results });
-    }
-  });
-});
-
-app.get('/api/getScience', (req, res) => {
-  // Query to get products from database
-  connection.query('SELECT * FROM book WHERE tNo LIKE "%7%" ', (err, results) => {
-    if (err) {
-      console.error('Error:', err);
-      res.status(500).json({ success: false, message: 'Failed to get products from database' });
-    } else {
-      res.status(200).json({ success: true, message: 'Products retrieved successfully', books: results });
-    }
-  });
-});
-
-app.get('/api/getOther', (req, res) => {
-  // Query to get products from database
-  connection.query('SELECT * FROM book WHERE tNo LIKE "%8%" ', (err, results) => {
-    if (err) {
-      console.error('Error:', err);
-      res.status(500).json({ success: false, message: 'Failed to get products from database' });
-    } else {
-      res.status(200).json({ success: true, message: 'Products retrieved successfully', books: results });
-    }
-  });
+  );
 });
 
 app.listen(PORT, () =>
-  console.log(`Server is running on port ${PORT}`),
+  console.log(`Server is running on port ${PORT}`)
 );

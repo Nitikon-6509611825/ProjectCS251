@@ -22,9 +22,9 @@ $(document).ready(function () {
         password: password
       },
       success: function (data) {
-        console.log(data);
         if (data.success == true) {
           localStorage.setItem("jwt", data.accessToken);
+          localStorage.setItem("userId", data.userId);
           Swal.fire({
             text: data.message,
             icon: 'success',

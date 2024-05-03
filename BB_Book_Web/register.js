@@ -20,7 +20,6 @@ $(document).ready(function () {
       url: 'http://localhost:3000/api/register',
       data: formData,
       success: function (data) {
-        console.log(data);
         if (data.success == true) {
           Swal.fire({
             text: data.message,

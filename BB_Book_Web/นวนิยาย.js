@@ -19,6 +19,7 @@ if (!("TextDecoder" in window))
   alert(
     "Sorry, this browser does not support TextDecoder..."
   );
+  let product = [];
 
 // Call API to get products when document is ready
 $(document).ready(function () {
@@ -26,11 +27,10 @@ $(document).ready(function () {
     url: "http://localhost:3000/api/getNovel",
     method: "GET",
     success: function (response) {
-      const product = response.books;
+      product = response.books;
       const productHTML = product
         .map((item, index) => {
           const { bPicture, bName, price } = item;
-          console.log(bPicture);
           let imageDataUrl = "";
           if (bPicture && bPicture.data.length > 0) {
             var enc = new TextDecoder("utf-8");
@@ -63,9 +63,37 @@ $(document).ready(function () {
   });
 });
 
-function addtocart(a) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || []; // ดึงข้อมูลตะกร้าจาก localStorage
-  cart.push({ ...product[a] }); // เพิ่มสินค้าเข้าสู่ตะกร้า
-  localStorage.setItem("cart", JSON.stringify(cart)); // อัปเดตข้อมูลตะกร้าใน localStorage
-  window.location.href = "cart.html"; // ส่งผู้ใช้ไปยังหน้า cart.html
+
+function addtocart(index) {
+  var formData = {
+    userId: localStorage.getItem("userId"),
+    bName: product[index].bName,
+    price: product[index].price,
+};
+
+  $.ajax({
+    url: "http://localhost:3000/api/addToCart",
+    method: "POST",
+    data:  formData ,
+    success: function (data) {
+      if (data.success == true) {
+        Swal.fire({
+          text: data.message,
+          icon: "success",
+          confirmButtonText: "OK",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = "./Confirm.html";
+          }
+        });
+      }
+    },
+    error: function (xhr, status, error) {
+      Swal.fire({
+        text: xhr.responseJSON.message,
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    },
+  });
 }
