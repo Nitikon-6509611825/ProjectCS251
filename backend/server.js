@@ -124,6 +124,101 @@ app.get('/api/getProduct', (req, res) => {
   });
 });
 
+app.get('/api/getNovel', (req, res) => {
+  connection.query('SELECT * FROM book WHERE tNo LIKE "%1%" ', (err, results) => {
+    if (err) {
+      console.error('Error:', err);
+      res.status(500).json({ success: false, message: 'Failed to get products from database' });
+    } else {
+      res.status(200).json({ success: true, message: 'Products retrieved successfully', books: results });
+    }
+  });
+});
+
+app.get('/api/getFinance', (req, res) => {
+  // Query to get products from database
+  connection.query('SELECT * FROM book WHERE tNo LIKE "%2%" ', (err, results) => {
+    if (err) {
+      console.error('Error:', err);
+      res.status(500).json({ success: false, message: 'Failed to get products from database' });
+    } else {
+      res.status(200).json({ success: true, message: 'Products retrieved successfully', books: results });
+    }
+  });
+});
+
+app.get('/api/getDevelopment', (req, res) => {
+  // Query to get products from database
+  connection.query('SELECT * FROM book WHERE tNo LIKE "%3%" ', (err, results) => {
+    if (err) {
+      console.error('Error:', err);
+      res.status(500).json({ success: false, message: 'Failed to get products from database' });
+    } else {
+      res.status(200).json({ success: true, message: 'Products retrieved successfully', books: results });
+    }
+  });
+});
+
+app.get('/api/getMagazine', (req, res) => {
+  // Query to get products from database
+  connection.query('SELECT * FROM book WHERE tNo LIKE "%4%" ', (err, results) => {
+    if (err) {
+      console.error('Error:', err);
+      res.status(500).json({ success: false, message: 'Failed to get products from database' });
+    } else {
+      res.status(200).json({ success: true, message: 'Products retrieved successfully', books: results });
+    }
+  });
+});
+
+app.get('/api/getHistory', (req, res) => {
+  // Query to get products from database
+  connection.query('SELECT * FROM book WHERE tNo LIKE "%5%" ', (err, results) => {
+    if (err) {
+      console.error('Error:', err);
+      res.status(500).json({ success: false, message: 'Failed to get products from database' });
+    } else {
+      res.status(200).json({ success: true, message: 'Products retrieved successfully', books: results });
+    }
+  });
+});
+
+app.get('/api/getPhilosophy', (req, res) => {
+  // Query to get products from database
+  connection.query('SELECT * FROM book WHERE tNo LIKE "%6%" ', (err, results) => {
+    if (err) {
+      console.error('Error:', err);
+      res.status(500).json({ success: false, message: 'Failed to get products from database' });
+    } else {
+      res.status(200).json({ success: true, message: 'Products retrieved successfully', books: results });
+    }
+  });
+});
+
+app.get('/api/getScience', (req, res) => {
+  // Query to get products from database
+  connection.query('SELECT * FROM book WHERE tNo LIKE "%7%" ', (err, results) => {
+    if (err) {
+      console.error('Error:', err);
+      res.status(500).json({ success: false, message: 'Failed to get products from database' });
+    } else {
+      res.status(200).json({ success: true, message: 'Products retrieved successfully', books: results });
+    }
+  });
+});
+
+app.get('/api/getOther', (req, res) => {
+  // Query to get products from database
+  connection.query('SELECT * FROM book WHERE tNo LIKE "%8%" ', (err, results) => {
+    if (err) {
+      console.error('Error:', err);
+      res.status(500).json({ success: false, message: 'Failed to get products from database' });
+    } else {
+      res.status(200).json({ success: true, message: 'Products retrieved successfully', books: results });
+    }
+  });
+});
+
 app.listen(PORT, () =>
   console.log(`Server is running on port ${PORT}`),
 );
