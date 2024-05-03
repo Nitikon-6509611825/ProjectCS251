@@ -68,12 +68,12 @@ function addtocart(index) {
     userId: localStorage.getItem("userId"),
     bName: product[index].bName,
     price: product[index].price,
-};
+  };
 
   $.ajax({
     url: "http://localhost:3000/api/addToCart",
     method: "POST",
-    data:  formData ,
+    data: formData,
     success: function (data) {
       if (data.success == true) {
         Swal.fire({

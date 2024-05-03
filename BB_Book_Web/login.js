@@ -25,6 +25,7 @@ $(document).ready(function () {
         if (data.success == true) {
           localStorage.setItem("jwt", data.accessToken);
           localStorage.setItem("userId", data.userId);
+          localStorage.setItem("UserKey", data.user[0]['UserID']);
           Swal.fire({
             text: data.message,
             icon: 'success',
@@ -41,7 +42,7 @@ $(document).ready(function () {
           text: xhr.responseJSON.message,
           icon: 'error',
           confirmButtonText: 'OK'
-        });;
+        });
       }
     });
   });

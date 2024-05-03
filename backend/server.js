@@ -76,46 +76,43 @@ app.post("/api/register", (req, res) => {
 
 app.post("/api/login", (req, res) => {
   const { uid, password } = req.body;
-  // ตรวจสอบว่าเป็น Admin หรือไม่
-  if (uid === "admin" && password === "00000000") {
-    res.status(200).json({
-      success: true,
-      message: "Admin เข้าสู่ระบบสำเร็จ",
-      accessToken: "admin",
-      userId: uid,
-    });
-  } else {
-    // ตรวจสอบว่ามีผู้ใช้งานที่ตรงกับข้อมูลที่รับมาหรือไม่
-    connection.query(
-      "SELECT * FROM `user` WHERE `userName` = ? AND `password` = ?",
-      [uid, password],
-      function (err, results, fields) {
-        if (err) {
-          // เกิดข้อผิดพลาดในการเชื่อมต่อฐานข้อมูล
-          console.error("Error:", err);
-          res.status(500).json({
-            success: false,
-            message: "เกิดข้อผิดพลาดในการสมัครสมาชิก",
-          });
-        } else {
-          if (results.length > 0) {
-            res.status(200).json({
-              success: true,
-              message: "เข้าสู่ระบบสำเร็จ",
-              accessToken: "user",
-              userId: uid,
-            });
-          } else {
-            res.status(401).json({
-              success: false,
-              message: "ข้อมูลการเข้าสู่ระบบไม่ถูกต้อง",
-              accessToken: "",
-            });
-          }
-        }
+  // ตรวจสอบว่ามีผู้ใช้งานที่ตรงกับข้อมูลที่รับมาหรือไม่
+  connection.query(
+    "SELECT UserID, userName, fname, lname, gender, email, Tel, uPic, address FROM `user` WHERE `userName` = ? AND `password` = ?",
+    [uid, password],
+    function (err, results, fields) {
+      if (uid === "admin" && password === "00000000") {
+        res.status(200).json({
+          success: true,
+          message: "Admin เข้าสู่ระบบสำเร็จ",
+          accessToken: "admin",
+          userId: uid,
+          user: results,
+        });
+      } else if (err) {
+        // เกิดข้อผิดพลาดในการเชื่อมต่อฐานข้อมูล
+        console.error("Error:", err);
+        res.status(500).json({
+          success: false,
+          message: "เกิดข้อผิดพลาดในการสมัครสมาชิก",
+        });
+      } else if (results.length > 0) {
+        res.status(200).json({
+          success: true,
+          message: "เข้าสู่ระบบสำเร็จ",
+          accessToken: "user",
+          userId: uid,
+          user: results,
+        });
+      } else {
+        res.status(401).json({
+          success: false,
+          message: "ข้อมูลการเข้าสู่ระบบไม่ถูกต้อง",
+          accessToken: "",
+        });
       }
-    );
-  }
+    }
+  );
 });
 
 // Endpoint to handle adding a new product
@@ -395,22 +392,86 @@ app.post("/api/getCart", (req, res) => {
   );
 });
 
-app.delete("/api/deleteCartItem", (req, res) => {
+app.post("/api/deleteCartItem", (req, res) => {
   const { userId } = req.body;
   connection.query(
-    "SELECT * FROM `buket` WHERE `UserID` = ?",
+    "DELETE FROM `buket` WHERE `UserID` = ?",
     [userId],
     function (err, results, fields) {
       if (err) {
         console.error("Error:", err);
         res.status(500).json({
           success: false,
-          message: "Failed to get products from database",
+          message: "ลบสินค้าออกจากตะกร้าไม่สำเร็จ",
         });
       } else {
         res.status(200).json({
           success: true,
-          message: "Products retrieved successfully",
+          message: "ลบสินค้าออกจากตะกร้าสำเร็จ",
+          bucket: results,
+        });
+      }
+    }
+  );
+});
+
+app.post("/api/getProfile", (req, res) => {
+  const { userKey } = req.body;
+  connection.query(
+    "SELECT UserID, userName, fname, lname, gender, email, Tel, uPic, address FROM `user` WHERE `UserID` = ?",
+    [userKey],
+    function (err, results, fields) {
+      if (err) {
+        console.error("Error:", err);
+        res.status(500).json({
+          success: false,
+          message: "Failed to get profile from database",
+        });
+      } else {
+        res.status(200).json({
+          success: true,
+          message: "Profile retrieved successfully",
+          profile: results,
+        });
+      }
+    }
+  );
+});
+
+app.put("/api/updateProfile", (req, res) => {
+  const {
+    username,
+    firstName,
+    lastName,
+    gender,
+    tel,
+    email,
+    address,
+    userKey,
+  } = req.body;
+  connection.query(
+    "UPDATE user SET userName = ?, fName = ?, lName = ?, gender = ?, email = ?, Tel = ?, address = ? WHERE `UserID` = ?",
+    [
+      username,
+      firstName,
+      lastName,
+      gender,
+      email,
+      tel,
+      address,
+      userKey,
+    ],
+    function (err, results, fields) {
+      if (err) {
+        console.error("Error:", err);
+        res.status(500).json({
+          success: false,
+          message: "Failed to update profile from database",
+        });
+      } else {
+        res.status(200).json({
+          success: true,
+          message: "update profile successfully",
           bucket: results,
         });
       }

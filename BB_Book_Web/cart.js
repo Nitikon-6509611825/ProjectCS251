@@ -1,3 +1,8 @@
+var jwt = localStorage.getItem("jwt");
+if (jwt !== "admin" && jwt !== "user") {
+    window.location.href = './login.html';
+}
+
 let searchForm = document.querySelector(".search-form");
 
 document.querySelector("#search-bth").onclick = () => {
@@ -19,8 +24,8 @@ document.querySelector("#login-btn").onclick = () => {
 
 let total = 0;
 let cart = [];
-
 const userId = { userId: localStorage.getItem("userId") };
+
 $(document).ready(function () {
   $.ajax({
     url: "http://localhost:3000/api/getCart",
@@ -59,11 +64,29 @@ $(document).ready(function () {
 });
 
 function delElement(index) {
-  console.log(index);
-  console.log(cart[index]);
-
-  // let cart = JSON.parse(localStorage.getItem('cart')) || []; // ดึงข้อมูลตะกร้าจาก localStorage
-  // cart.splice(index, 1); // ลบสินค้าออกจากตะกร้า
-  // localStorage.setItem('cart', JSON.stringify(cart)); // อัปเดตข้อมูลตะกร้าใน localStorage
-  // displaycart(); // แสดงรายการสินค้าใหม่หลังจากลบ
+  $.ajax({
+    url: "http://localhost:3000/api/deleteCartItem",
+    method: "POST",
+    data: userId,
+    success: function (data) {
+        if (data.success == true) {
+          Swal.fire({
+            text: data.message,
+            icon: "success",
+            confirmButtonText: "OK",
+          }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.reload();
+            }
+          });
+        }
+    },
+    error: function (xhr, status, error) {
+        Swal.fire({
+          text: xhr.responseJSON.message,
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      },
+  });
 }
