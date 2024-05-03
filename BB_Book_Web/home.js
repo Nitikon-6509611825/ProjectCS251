@@ -12,35 +12,57 @@ document.querySelector('#login-btn').onclick = () => {
     window.location.href = 'Login.html'; // ลิงค์ไปยังหน้า cart.html
 };
 
+function arrayBufferToBase64(buffer) {
+    let binary = '';
+    const bytes = new Uint8Array(buffer);
+    const len = bytes.byteLength;
+    for (let i = 0; i < len; i++) {
+        binary += String.fromCharCode(bytes[i]);
+    }
+    return 'data:image/jpeg;base64,' + window.btoa(binary);
+}
 
 /*-------------- ตะกร้าสินค้า -----------*/
 /*---- home.js ----*/
 
+function arrayBufferToBase64(buffer) {
+    let binary = '';
+    const bytes = new Uint8Array(buffer);
+    const len = bytes.byteLength;
+    for (let i = 0; i < len; i++) {
+        binary += String.fromCharCode(bytes[i]);
+    }
+    return 'data:image/jpeg;base64,' + window.btoa(binary);
+}
+
+if (!("TextDecoder" in window))
+    alert("Sorry, this browser does not support TextDecoder...");
+
 // Call API to get products when document is ready
-let product = [];
 $(document).ready(function () {
-    // ส่งคำขอ GET ไปยัง API เพื่อดึงข้อมูลสินค้า
     $.ajax({
         url: 'http://localhost:3000/api/getProduct',
         method: 'GET',
         success: function (response) {
-            // หลังจากที่ได้รับข้อมูลสินค้ามาสำเร็จ
-            // กำหนดข้อมูลสินค้าให้กับตัวแปร product
             const product = response.books;
-
-            // สร้าง HTML สำหรับแสดงสินค้า
             const productHTML = product.map((item, index) => {
                 const { bPicture, bName, price } = item;
+                console.log(bPicture)
+                // convert bPicture (type buffer) to text (filename)
                 let imageDataUrl = '';
                 if (bPicture && bPicture.data.length > 0) {
-                    imageDataUrl = `data:image/jpeg;base64,${bPicture.toString('base64')}`;
-                    console.log(bPicture.toString('base64'))
+                    var enc = new TextDecoder("utf-8");
+                    var arr = new Uint8Array(bPicture.data);
+                    imageDataUrl = String(enc.decode(arr))
+                    console.log((imageDataUrl))
+                    console.log(typeof (imageDataUrl))
                 }
-                
+
                 return `
                     <div class='box'>
                         <div class='img-box'>
-                            <img class='images' src='${imageDataUrl}'></img>
+                            <img style="height: 100%;"
+                            src="/backend/${imageDataUrl}">
                         </div>
                         <div class='bottom'>
                             <p>${bName}</p>
@@ -51,18 +73,14 @@ $(document).ready(function () {
                 `;
             }).join('');
 
-            // แทรก HTML ที่สร้างเข้าไปใน element ที่มี id เป็น 'root'
             $('#root').html(productHTML);
         },
         error: function (xhr, status, error) {
             console.error('Error:', error);
-            // แสดงข้อความแจ้งเตือนเมื่อมีข้อผิดพลาดในการดึงข้อมูล
             alert('เกิดข้อผิดพลาดในการดึงข้อมูลสินค้า');
         }
     });
 });
-
-
 
 function addtocart(a) {
     let cart = JSON.parse(localStorage.getItem('cart')) || []; // ดึงข้อมูลตะกร้าจาก localStorage

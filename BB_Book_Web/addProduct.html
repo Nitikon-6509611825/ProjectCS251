@@ -43,7 +43,7 @@
         
 
         <!--Body Page-->
-    <form id="myForm" name="myForm" enctype="multipart/form-data" action="#" method="post">
+    <form id="myForm" name="myForm" enctype="multipart/form-data" method="post">
         <div class="container">
             <div class="column1"> <!--Coloumn picture-->
                 <div class="image-container">
@@ -66,15 +66,15 @@
                     <br>
                     <div class="row">
                         <label for="bookGroup1" class="small-label">หมวดหมู่: </label> 
-                        <input type="number" name="bookGroup" id="bookGroup1" class="sub-input1"> 
+                        <input type="number" name="bookGroup" id="bookGroup1" class="sub-input1" min="1" max="6"> 
                         <!-- เก็บข้อมูลจาก id ไว้ใน database table book atribute "picture" / ***หากมีหลาย bookGroup ให้เก็บข้อมูล Group ละ 1 row ใน database-->
-                        <input type="number" name="bookGroup" id="bookGroup2" class="sub-input2">
-                        <input type="number" name="bookGroup" id="bookGroup3" class="sub-input3"><br>
+                        <input type="number" name="bookGroup" id="bookGroup2" class="sub-input2" min="1" max="6">
+                        <input type="number" name="bookGroup" id="bookGroup3" class="sub-input3" min="1" max="6"><br>
                         <br><span id="errorMessage1" class="error-message"></span><br>
                     </div>
                     <div class="row">
                         <label for="price" class="small-label">ราคา: </label> <!-- เก็บข้อมูลจาก id ไว้ใน database table book atribute "price"-->
-                        <input type="number" name="price" id="price" class="sub-input1"><br>
+                        <input type="number" name="price" id="price" class="sub-input1" min="0"><br>
                         <br><span id="errorMessage2" class="error-message"></span><br>
                     </div>
             </div>

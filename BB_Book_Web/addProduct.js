@@ -4,18 +4,14 @@ if (jwt !== "admin") {
 }
 
 $(document).ready(function () {
-    $('#input-file').change(function () {
-        // เมื่อมีการเลือกไฟล์
-        var input = this;
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#bookPic').attr('src', e.target.result); // ตั้งค่า src ของรูปภาพ
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
+    $('#input-file').on('change', function (e) {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onload = function () {
+            $('#bookPic').attr('src', reader.result);
+        };
+        reader.readAsDataURL(file);
     });
-
     $('form').submit(function (e) {
         e.preventDefault();
         // เมื่อฟอร์มถูกส่ง
@@ -25,7 +21,6 @@ $(document).ready(function () {
         var bookGroup2 = $('#bookGroup2').val();
         var bookGroup3 = $('#bookGroup3').val();
         var price = $('#price').val();
-        var picture = $('#input-file').val();
 
         if (bookName === "" || (bookGroup1 === "" && bookGroup2 === "" && bookGroup3 === "") || price === "") {
             Swal.fire({
@@ -38,18 +33,19 @@ $(document).ready(function () {
 
         const tNo = String(bookGroup1) + String(bookGroup2) + String(bookGroup3);
         // รวบรวมข้อมูลจากฟอร์ม
-        var formData = {
-            bookName: bookName,
-            tNo: tNo,
-            price: price,
-            bPicture: picture
-        };
+        var formData = new FormData();
+        formData.append('bookName', bookName);
+        formData.append('tNo', tNo);
+        formData.append('price', price);
+        formData.append('bPicture', $('#input-file')[0].files[0]);
 
         // ส่งข้อมูลไปยัง API
         $.ajax({
             type: 'POST',
             url: 'http://localhost:3000/api/addProduct',
             data: formData,
+            contentType: false,
+            processData: false,
             success: function (data) {
                 console.log(data);
                 if (data.success === true) {
@@ -57,7 +53,7 @@ $(document).ready(function () {
                         text: data.message,
                         icon: 'success',
                         confirmButtonText: 'OK'
-                    });
+                    })
                 }
             },
             error: function (xhr, status, error) {

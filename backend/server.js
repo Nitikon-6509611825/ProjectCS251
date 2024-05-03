@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const mysql = require('mysql2');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' }); // Define the upload directory
 
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -85,10 +87,15 @@ app.post('/api/login', (req, res) => {
 });
 
 // Endpoint to handle adding a new product
-app.post('/api/addProduct', (req, res) => {
+app.post('/api/addProduct', upload.single('bPicture'), (req, res) => {
   const bId = String(Date.now().toString(32) + Math.random().toString(16)).replace(/\./g, '');
   // Retrieve data from the request body
-  const { bookName, tNo, price, bPicture } = req.body;
+  const { bookName, tNo, price } = req.body;
+  let bPicture = null;
+  if (req.file) {
+    bPicture = req.file.path;
+  }
+
   // Prepare SQL query to insert the new product into the database
   const sql = 'INSERT INTO book (bID, tNo, bName, price, bPicture) VALUES (?, ?, ?, ?, ?)';
   const values = [bId, tNo, bookName, price, bPicture];
