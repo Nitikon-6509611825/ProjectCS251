@@ -44,7 +44,7 @@
         <div class="container">
             <div class="column1"> <!--Coloumn picture-->
                 <div class="image-container">
-                    <img src="imgs/addPic.png" id="bookPic">
+                    <img src="imgs/addPic.png" id="bookPic"> <!-- เก็บข้อมูลจาก id ไว้ใน database table book atribute "picture"-->
                     <div class="overlay">
                         <label for="input-file"></label>
                         <input type="file" accept="image/jpeg,  image/png, image/jpg" id="input-file">
@@ -52,50 +52,28 @@
                 </div>
             </div>
             <div class="column"> <!--Column Book Detail-->
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br><br><br><br><br>
                     <div class="row">
                         <label class="red-label" for="bookName">เพิ่มรายการ</label>
                     </div>
                     <div class="row">
-                        <input type="text" name="bookName" id="bookName" placeholder="ชื่อหนังสือ">
+                        <input type="text" name="bookName" id="bookName" placeholder="ชื่อหนังสือ"> <!-- เก็บข้อมูลจาก id ไว้ใน database table book atribute "bName"-->
                         <span id="errorMessage" class="error-message"></span><br>
-                    </div>
-                    <div class="row">
-                        <input type="text" name="bookDetail" id="bookDetail" placeholder="คำโปรย" >
                     </div>
                     <br>
                     <div class="row">
-                        <label for="writer" class="small-label">ผู้เขียน: </label>
-                        <input type="text" name="writer" id="writer" class="sub-input1">
-                    </div>
-                    <br><br>
-                    <div class="row">
-                        <label for="publisher" class="small-label">สำนักพิมพ์: </label>
-                        <input type="text" name="publisher" id="publisher" class="sub-input1">
-                    </div>
-                    <br><br>
-                    <div class="row">
-                        <label for="bookGroup1" class="small-label">หมวดหมู่: </label>
-                        <input type="text" name="bookGroup" id="bookGroup1" class="sub-input1">
+                        <label for="bookGroup1" class="small-label">หมวดหมู่: </label> 
+                        <input type="text" name="bookGroup" id="bookGroup1" class="sub-input1"> 
+                        <!-- เก็บข้อมูลจาก id ไว้ใน database table book atribute "picture" / ***หากมีหลาย bookGroup ให้เก็บข้อมูล Group ละ 1 row ใน database-->
                         <input type="text" name="bookGroup" id="bookGroup2" class="sub-input2">
                         <input type="text" name="bookGroup" id="bookGroup3" class="sub-input3"><br>
                         <br><span id="errorMessage1" class="error-message"></span><br>
                     </div>
                     <div class="row">
-                        <label for="price" class="small-label">ราคา: </label>
+                        <label for="price" class="small-label">ราคา: </label> <!-- เก็บข้อมูลจาก id ไว้ใน database table book atribute "price"-->
                         <input type="text" name="price" id="price" class="sub-input1"><br>
                         <br><span id="errorMessage2" class="error-message"></span><br>
                     </div>
-            </div>
-            <div class="column">
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                <div class="row">
-                    <label class="red-label" for="bookStory">เนื้อหาโดยสังเขป</label>
-                </div>
-                <div class="row">
-                    <textarea name="bookStory" id="bookStory" cols="30" rows="10"></textarea>
-                </div>
-                
             </div>
         </div>
         <div class="row">

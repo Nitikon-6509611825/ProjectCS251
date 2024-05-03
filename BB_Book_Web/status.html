@@ -54,7 +54,7 @@
                 <span id="user-name"></span>
                 <span id="e-mail"></span>
                 <label for="input-file">แก้ไข</label>
-                <input type="file" accept="image/jpeg, image/png" id="input-file" style="margin-left: 70px;">
+                <input type="file" accept="image/jpeg, image/png" id="input-file" style="margin-left: 70px;"> 
             </div>
 
             <div class="left-box">
@@ -81,13 +81,12 @@
                         <th>หมายเลขคำสั่งซื้อ</th>
                         <th>ชื่อ-นามสกุล</th>
                         <th>วันที่จัดส่ง</th>
-                        <th>สถานะ</th>
                     </tr>
                     <tr>
-                        <td><span id="NoID" name="NoID" ></span></td>
-                        <td><span id="name" name="name" ></span></td>
-                        <td><span id="date" name="date" ></span></td>
-                        <td><span id="status" name="status" ></span></td>
+                        <!--ดึงข้อมูลจาก table "user" attribute "userID" ซึ่งเป็น forage key(FK) เดียวกับ attribute "uID" ใน table "transaction" เพื่อเอาข้อมูลจาก -->
+                        <td><span id="NoID" name="NoID" ></span></td> <!--ดึงข้อมูลจากใน table "transaction" attribute "uID"-->
+                        <td><span id="name" name="name" ></span></td> <!--ดึงข้อมูลจากใน table "user" attribute "fName" + "lName"-->
+                        <td><span id="date" name="date" ></span></td> <!--ดึงข้อมูลจากใน table "transaction" attribute "date"-->
                     </tr>
 
                     </table>

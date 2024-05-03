@@ -51,7 +51,7 @@
         <div class="column">    
             <div class="card">
                 <img src="profile.png" id="profile-pic">
-                <span id="user-name"></span>
+                <span id="user-name"></span> 
                 <span id="e-mail"></span>
                 <label for="input-file">แก้ไข</label>
                 <input type="file" accept="image/jpeg, image/png" id="input-file" style="margin-left: 70px;">
@@ -69,32 +69,32 @@
                 </div>
             </div>
 
-            <div class="right-box">
+            <div class="right-box"> 
                 <br><br>
                 <div class="profile">
-                    <h2>Edit Profile</h2>
+                    <h2>Edit Profile</h2> 
                     <br><br><br>
-                    <div class="column">
+                    <div class="column">  
                         <div class="row">
-                            <p>ชื่อผู้ใช้: <span id="edit-username" name="username"></span></p>
+                            <p>ชื่อผู้ใช้: <span id="edit-username" name="username"></span></p> 
                             <br>
-                            <input id="username-input" name="username-input" type="text" class="editinput">
+                            <input id="username-input" name="username-input" type="text" class="editinput"> <!--ส่งข้อมูลไปแก้ไข ใน table user attribute "user"-->
                         </div>
                     </div>
                     <br>
                     <p>ชื่อ: <span id="fname" name="fname"></span> </p>
                     <br>
-                    <input id="fname-input" name="fname-input" type="text" class="editinput">
+                    <input id="fname-input" name="fname-input" type="text" class="editinput"> <!--ส่งข้อมูลไปแก้ไข ใน table user attribute "fname"-->
                     <br>
                     <br>
                     <p>นามสกุล: <span id="lname" name="lname"></span></p>
                     <br>
-                    <input id="lname-input" name="lname-input" type="text" class="editinput">
+                    <input id="lname-input" name="lname-input" type="text" class="editinput"> <!--ส่งข้อมูลไปแก้ไข ใน table user attribute "lname"-->
                     <br>
                     <br>
                     <p>เพศ: <span id="gender" name="gender"></span></p>
                     <br>
-                    <select class="editinput" name="gender-input" id="gender-input" style="width: 100px;">
+                    <select class="editinput" name="gender-input" id="gender-input" style="width: 100px;"> <!--ส่งข้อมูลไปแก้ไข ใน table user attribute "gender"-->
                         <option id="gender-input"></option>
                         <option id="gender-input">Male</option> 
                         <option id="gender-input">Female</option>
@@ -103,17 +103,17 @@
                     <br>
                     <p>หมายเลขโทรศัพท์: <span id="tel" name="tel"></span></p>
                     <br>
-                    <input id="tel-input" name="tel-input" type="text" class="editinput">
+                    <input id="tel-input" name="tel-input" type="text" class="editinput"> <!--ส่งข้อมูลไปแก้ไข ใน table user attribute "tel"-->
                     <br>
                     <br>
                     <p>อีเมลล์: <span id="email" name="email"></span></p>
                     <br>
-                    <input id="email-input" name="email-input" type="email" class="editinput">
+                    <input id="email-input" name="email-input" type="email" class="editinput"> <!--ส่งข้อมูลไปแก้ไข ใน table user attribute "email"-->
                     <br>
                     <br>
                     <p>ที่อยู่: <span id="address" name="address"></span></p>
                     <br>
-                    <input id="address-input" name="edit-address-input" type="text" class="editinput">
+                    <input id="address-input" name="edit-address-input" type="text" class="editinput"> <!--ส่งข้อมูลไปแก้ไข ใน table user attribute "address" แต่ address เป็นmultiattribute ไปอีกtable ของ address-->
                     <br>
                     <br>
                     <button type="button" id="update-button" onclick="updateProfile();" style="margin-right: 600px;">SAVE</button>
