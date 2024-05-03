@@ -54,15 +54,13 @@ $(document).ready(function () {
                     var enc = new TextDecoder("utf-8");
                     var arr = new Uint8Array(bPicture.data);
                     imageDataUrl = String(enc.decode(arr))
-                    console.log((imageDataUrl))
-                    console.log(typeof (imageDataUrl))
                 }
-
                 return `
                     <div class='box'>
                         <div class='img-box'>
                             <img style="height: 100%;"
-                            src="/backend/${imageDataUrl}">
+                            src="/backend/${imageDataUrl}"
+                            alt="">
                         </div>
                         <div class='bottom'>
                             <p>${bName}</p>
